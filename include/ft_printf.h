@@ -18,4 +18,6 @@ int ft_print_hex_memory(void *pointer);
 
 int ft_put_unsigned_fd(int n, int fd);
 
+int ft_print_hex_nbr(unsigned int number, char type);
+
 #endif //FT_PRINTF_H

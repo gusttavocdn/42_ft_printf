@@ -1,7 +1,5 @@
 #include "../include/ft_printf.h"
 
-// Conversions : It will manage the following conversions: cspdiuxX%
-
 static int ft_format_arguments(char type, va_list args_list)
 {
 	switch (type)
@@ -16,6 +14,14 @@ static int ft_format_arguments(char type, va_list args_list)
 			return ft_putnbr_fd(va_arg(args_list, int), STDOUT_FILENO);
 		case 'u':
 			return ft_put_unsigned_fd(va_arg(args_list, unsigned int), STDOUT_FILENO);
+		case 'x':
+			return ft_print_hex_nbr(va_arg(args_list, unsigned int), 'x');
+		case 'X':
+			return ft_print_hex_nbr(va_arg(args_list, unsigned int), 'X');
+		case '%':
+			return ft_putchar_fd('%', STDOUT_FILENO);
+		case 'i':
+			return ft_putnbr_fd(va_arg(args_list, int), STDOUT_FILENO);
 		default:
 			return (0);
 	}
