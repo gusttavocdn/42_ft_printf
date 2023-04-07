@@ -7,7 +7,7 @@ HEADER_PATH = ./include
 HEADER = ${HEADER_PATH}/ft_printf.h
 SRC_PATH = ./src
 SRCS = ${SRC_PATH}/ft_printf.c	${SRC_PATH}/ft_print_hex_memory.c \
-	${SRC_PATH}/ft_putunbr_fd.c	${SRC_PATH}/ft_print_hex_nbr.c
+	${SRC_PATH}/ft_put_unsigned_fd.c	${SRC_PATH}/ft_print_hex_nbr.c
 OBJS = ${SRCS:.c=.o}
 RM = rm -rf
 
