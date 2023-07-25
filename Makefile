@@ -1,42 +1,63 @@
-LIBFT_PATH = ./libft
-LIBFT = libft.a
-NAME = libftprintf.a
-CFLAGS = -Wall -Wextra -Werror
-CC = cc
-HEADER_PATH = ./include
-HEADER = ${HEADER_PATH}/ft_printf.h
-SRC_PATH = ./src
-SRCS = ${SRC_PATH}/ft_printf.c	${SRC_PATH}/ft_print_hex_memory.c \
-	${SRC_PATH}/ft_put_unsigned_fd.c	${SRC_PATH}/ft_print_hex_nbr.c
-OBJS = ${SRCS:.c=.o}
-RM = rm -rf
+################################################################################
+#                                     CONFIG                                   #
+################################################################################
 
-all:	${NAME}
+NAME        := libftprintf.a
+CC        := cc
+FLAGS    := -Wall -Wextra -Werror 
 
-#To run the main for test quickly
-run:
-	@clear
-	${CC} main.c -lftprintf -L ./ -lft -L ${LIBFT_PATH} -o main
-	./main
+################################################################################
+#                                 LIBFT                                        #
+################################################################################
 
-${NAME}: ${LIBFT} ${OBJS} ${HEADER}
-	@echo "Creating the library"
-	ar -rcs ${NAME} ${OBJS} ${HEADER}
-	@echo "Library sucessfuly created"
+LIBFT   :=  libft.a
+LIBFT_PATH  :=  ./libft
 
-${LIBFT}:
-	@echo "Making Libft objects files"
-	@make -C ${LIBFT_PATH}
-	@echo "Removing libft.o files remaining"
-	@make -C ${LIBFT_PATH} clean
+libft.a:
+    @make -C $(LIBFT_PATH)
+
+
+################################################################################
+#                                 PROGRAM'S SRCS                               #
+################################################################################
+
+SRCS        :=     
+                          
+OBJS        := $(SRCS:.c=.o)
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+
+################################################################################
+#                                  Makefile  objs                              #
+################################################################################
+
+
+CLR_RMV		:= \033[0m
+RED		    := \033[1;31m
+GREEN		:= \033[1;32m
+YELLOW		:= \033[1;33m
+BLUE		:= \033[1;34m
+CYAN 		:= \033[1;36m
+RM		    := rm -f
+
+${NAME}:	${OBJS}
+			@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
+			${CC} ${FLAGS} -o ${NAME} ${OBJS}
+			@echo "$(GREEN)$(NAME) created[0m ✔️"
+
+all:		${NAME}
 
 clean:
-	${RM} ${OBJS}
+			@ ${RM} *.o */*.o */*/*.o
+			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)objs ✔️"
 
-fclean: clean
-	${RM} ${NAME} ${LIBFT_PATH}/${LIBFT}
+fclean:		clean
+			@ ${RM} ${NAME}
+			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 
-.PHONY: run clean fclean all libft
+re:			fclean all
+
+.PHONY:		all clean fclean re
+
+

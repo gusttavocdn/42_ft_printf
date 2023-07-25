@@ -1,66 +1,81 @@
-NAME = libft.a
+################################################################################
+#                                     CONFIG                                   #
+################################################################################
 
-SRC = ft_isalpha.c ft_isdigit.c \
-	ft_isalnum.c ft_isascii.c \
-	ft_isprint.c ft_strlcpy.c \
-	ft_strlen.c ft_atoi.c \
-	ft_bzero.c ft_calloc.c \
-	ft_itoa.c ft_memchr.c \
-	ft_memmove.c ft_memcmp.c \
-	ft_memset.c ft_putchar_fd.c \
-	ft_putendl_fd.c ft_putnbr_fd.c \
-	ft_putstr_fd.c ft_strchr.c \
-	ft_strdup.c ft_strjoin.c \
-	ft_strncmp.c ft_strnstr.c \
-	ft_strrchr.c ft_strtrim.c \
-	ft_substr.c ft_tolower.c \
-	ft_toupper.c ft_strlcat.c \
-	ft_memcpy.c ft_strmapi.c \
-	ft_striteri.c ft_lstnew.c \
-	ft_lstadd_front.c  ft_lstsize.c \
-	ft_lstlast.c ft_lstadd_back.c \
-	ft_lstdelone.c  ft_lstclear.c  \
-	ft_lstmap.c ft_lstiter.c \
-	ft_split.c get_next_line.c \
+NAME        := libft.a
+CC        := cc
+FLAGS    := -Wall -Wextra -Werror 
 
-SRC_B = ft_lstnew.c ft_lstadd_front.c \
-		ft_lstsize.c  ft_lstlast.c \
-		ft_lstadd_back.c  ft_lstdelone.c \
-		ft_lstmap.c ft_lstiter.c \
-		ft_lstclear.c get_next_line.c \
+################################################################################
+#                                 LIBRARIES PATHS                              #
+################################################################################
 
-B_OBJS = ${SRC_B:.c=.o}
+CHAR_LIB := ./src/char
+MATH_LIB := ./src/math
+MEM_LIB := ./src/memory
+STR_LIB := ./src/strings
+STDIO_LIB := ./src/stdio
 
-OBJS = ${SRC:.c=.o}
+################################################################################
+#                                 INCLUDES                                     #
+################################################################################
 
-CC = cc
+INCLUDES   := $(addprefix ./includes/, ft_char.h ft_math.h ft_mem.h ft_strings.h ft_stdio.h libft.h)
 
-FLAGS = -Wall -Wextra -Werror
+################################################################################
+#                                 PROGRAM'S SRCS                               #
+################################################################################
 
-HEADER = libft.h
 
-all:	${NAME}
+CHAR_LIB_SRCS := $(addprefix $(CHAR_LIB)/, ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
+											ft_isprint.c ft_tolower.c ft_toupper.c ft_isspace.c)
 
-${NAME}: ${OBJS} ${B_OBJS} ${HEADER}
-	@ar -rcs ${NAME} ${OBJS} ${B_OBJS} ${HEADER}
+MATH_LIB_SRCS := $(addprefix $(MATH_LIB)/, ft_atoi.c ft_itoa.c ft_atoi_base.c ft_itoa_base.c \
+											ft_calc_nbr_digits.c ft_convert_base.c)
 
-# bonus: ${NAME} ${B_OBJS}
-# 	ar -rcs ${NAME} ${B_OBJS}
+MEM_LIB_SRCS := $(addprefix $(MEM_LIB)/, ft_bzero.c ft_calloc.c ft_memcpy.c ft_memchr.c \
+										ft_memcmp.c ft_memmove.c ft_memset.c ft_swap.c)
 
-# Tell make how to transform a .c file into a object file
+STR_LIB_SRCS := $(addprefix $(STR_LIB)/, ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c)
+
+STDIO_LIB_SRCS := $(addprefix $(STDIO_LIB)/, ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c \
+											ft_putnbr_base_fd.c ft_gnl.c)
+
+SRCS        :=  $(CHAR_LIB_SRCS) $(MATH_LIB_SRCS) $(MEM_LIB_SRCS) $(STR_LIB_SRCS) $(STDIO_LIB_SRCS)
+                          
+OBJS        := $(SRCS:.c=.o)
+
 .c.o:
-	@$(CC) $(FLAGS) -c $< -o ${<:.c=.o}
+	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+
+################################################################################
+#                                  Makefile  objs                              #
+################################################################################
+
+
+CLR_RMV		:= \033[0m
+RED		    := \033[1;31m
+GREEN		:= \033[1;32m
+YELLOW		:= \033[1;33m
+BLUE		:= \033[1;34m
+CYAN 		:= \033[1;36m
+RM		    := rm -f
+
+${NAME}:	${OBJS} ${INCLUDES}
+			@echo "$(GREEN)Creating ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
+			ar -rcs ${NAME} ${OBJS} ${INCLUDES}
+			@echo "$(GREEN)$(NAME) created[0m ✔️"
+
+all:		${NAME}
 
 clean:
-	@${RM} ${OBJS} libft.so a.out
+			@ ${RM} *.o */*.o */*/*.o
+			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)objs ✔️"
 
-fclean: clean
-	${RM} ${NAME}
+fclean:		clean
+			@ ${RM} ${NAME}
+			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 
-re: fclean all
+re:			fclean all
 
-so:
-	$(CC) -nostartfiles -fPIC $(FLAGS) $(SRC)
-	gcc -nostartfiles -shared -o libft.so $(OBJS)
-
-.PHONY: clean all fclean re so
+.PHONY:		all clean fclean re
