@@ -58,5 +58,6 @@ cmake-build-debug/
 CMakeLists.txt
 *main*
 .idea
+ft_printf
 
 # End of https://www.toptal.com/developers/gitignore/api/c

@@ -19,7 +19,7 @@ LIBFT 	:=  $(LIBFT_PATH)/libft.a
 ################################################################################
 
 SRC_DIR	:= 	src/
-SRC_FILES	:= ft_printf.c
+SRC_FILES	:= ft_printf.c conversion_flag_handler.c
 
 SRC := $(addprefix $(SRC_DIR), $(SRC_FILES))
 	
@@ -46,7 +46,8 @@ RM		    := rm -f
 
 ${NAME}:	${OBJS} ${LIBFT} ${INCLUDES}
 			@echo "$(GREEN)Creating lib ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
-			${LIB} ${NAME} ${OBJS} ${LIBFT} ${INCLUDES}
+			@cp ${LIBFT} ${NAME}
+			${LIB} ${NAME} ${OBJS} ${INCLUDES}
 			@echo "$(GREEN)$(NAME) created[0m ✔️"
 
 all:		${NAME}
@@ -69,8 +70,9 @@ ${LIBFT}:
 	@make -C $(LIBFT_PATH) clean
 
 run: 		all
-			@echo "$(GREEN)Running..."
-			${CC} ${FLAGS} -o ft_printf main.c
+			@echo "$(GREEN)Running...\n$(CLR_RMV)"
+			@${CC} ${FLAGS} -o ft_printf main.c ${NAME}
+			@./ft_printf
 
 .PHONY:		all clean fclean re run
 
