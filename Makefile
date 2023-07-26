@@ -1,35 +1,38 @@
 ################################################################################
-#                                     CONFIG                                   #
+#                                    CONFIG	                                   #
 ################################################################################
 
-NAME        := libftprintf.a
-CC        := cc
-FLAGS    := -Wall -Wextra -Werror 
+NAME	:= libftprintf.a
+CC	:= cc
+FLAGS    := -Wall -Wextra -Werror -g
+LIB = ar -rcs
 
 ################################################################################
-#                                 LIBFT                                        #
+#                             LIBFT                                            #
 ################################################################################
 
-LIBFT   :=  libft.a
 LIBFT_PATH  :=  ./libft
-
-libft.a:
-    @make -C $(LIBFT_PATH)
-
+LIBFT 	:=  $(LIBFT_PATH)/libft.a
 
 ################################################################################
-#                                 PROGRAM'S SRCS                               #
+#                           PROGRAM'S SRCS                                     #
 ################################################################################
 
-SRCS        :=     
-                          
-OBJS        := $(SRCS:.c=.o)
+SRC_DIR	:= 	src/
+SRC_FILES	:= ft_printf.c
 
-.c.o:
-	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+SRC := $(addprefix $(SRC_DIR), $(SRC_FILES))
+	
+OBJS	:= $(SRC:.c=.o)
+
+INCLUDES := ./includes/ft_printf.h
+
+src/%.o: src/%.c
+	@echo "$(GREEN)Compiling $(CYAN)$< $(CLR_RMV)to $(YELLOW)$@ $(CLR_RMV)..."
+	${CC} ${FLAGS} -c $< -o $@
 
 ################################################################################
-#                                  Makefile  objs                              #
+#                           Makefile  objs                                     #
 ################################################################################
 
 
@@ -41,23 +44,34 @@ BLUE		:= \033[1;34m
 CYAN 		:= \033[1;36m
 RM		    := rm -f
 
-${NAME}:	${OBJS}
-			@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
-			${CC} ${FLAGS} -o ${NAME} ${OBJS}
+${NAME}:	${OBJS} ${LIBFT} ${INCLUDES}
+			@echo "$(GREEN)Creating lib ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
+			${LIB} ${NAME} ${OBJS} ${LIBFT} ${INCLUDES}
 			@echo "$(GREEN)$(NAME) created[0m ✔️"
 
 all:		${NAME}
 
 clean:
-			@ ${RM} *.o */*.o */*/*.o
-			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)objs ✔️"
+			@${RM} *.o */*.o */*/*.o
+			@make -C $(LIBFT_PATH) clean
+			@echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)objs ✔️"
 
 fclean:		clean
+			@make -C $(LIBFT_PATH) fclean
 			@ ${RM} ${NAME}
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 
 re:			fclean all
 
-.PHONY:		all clean fclean re
+${LIBFT}:
+	@echo "$(GREEN)Making LIBFT..."
+	@make -C $(LIBFT_PATH)
+	@make -C $(LIBFT_PATH) clean
+
+run: 		all
+			@echo "$(GREEN)Running..."
+			${CC} ${FLAGS} -o ft_printf main.c
+
+.PHONY:		all clean fclean re run
 
 

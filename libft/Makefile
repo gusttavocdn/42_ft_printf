@@ -45,8 +45,8 @@ SRCS        :=  $(CHAR_LIB_SRCS) $(MATH_LIB_SRCS) $(MEM_LIB_SRCS) $(STR_LIB_SRCS
                           
 OBJS        := $(SRCS:.c=.o)
 
-.c.o:
-	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+src/%.o: src/%.c
+	${CC} ${FLAGS} -c $< -o $@
 
 ################################################################################
 #                                  Makefile  objs                              #
