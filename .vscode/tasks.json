@@ -8,9 +8,10 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${workspaceFolder}/src/ft_printf.c",
-                "${workspaceFolder}/src/conversion_flag_handler.c",
+                "${workspaceFolder}/src/specifier_handler.c",
                 "${workspaceFolder}/main.c",
                 "${workspaceFolder}/libftprintf.a",
+                "${workspaceFolder}/libft/src/stdio/ft_putnbr_base_fd.c",
                 "-o",
                 "${workspaceFolder}/ft_printf"
             ],

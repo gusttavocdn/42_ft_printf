@@ -12,22 +12,39 @@
 
 #include "../includes/ft_printf.h"
 
-// TODO: Handle specifiers p and u
-int	handle_specifier(char specifier, const char *str, va_list args)
+static int handle_p_specifier(va_list args);
+
+int	handle_specifier(char specifier, va_list args)
 {
 	if (specifier == 'c')
-		return (ft_putchar_fd(va_arg(args, int), STDOUT_FILENO));
+		return ((int)ft_putchar_fd(va_arg(args, int), STDOUT_FILENO));
 	if (specifier == 's')
-		return (ft_putstr_fd(va_arg(args, char *), STDOUT_FILENO));
+		return ((int)ft_putstr_fd(va_arg(args, char *), STDOUT_FILENO));
 	if (specifier == 'd' || specifier == 'i')
-		return (ft_putnbr_fd(va_arg(args, int), STDOUT_FILENO));
+		return ((int)ft_putnbr_fd(va_arg(args, int), STDOUT_FILENO));
 	if (specifier == 'x')
-		return (ft_putnbr_base(va_arg(args, int), HEX_LOWER_BASE,
+		return ((int)ft_putnbr_base(va_arg(args, int), HEX_LOWER_BASE,
 				STDOUT_FILENO));
 	if (specifier == 'X')
-		return (ft_putnbr_base(va_arg(args, int), HEX_UPPER_BASE,
+		return ((int)ft_putnbr_base(va_arg(args, int), HEX_UPPER_BASE,
 				STDOUT_FILENO));
 	if (specifier == '%')
-		return (ft_putchar_fd('%', STDOUT_FILENO));
+		return ((int)ft_putchar_fd('%', STDOUT_FILENO));
+	if (specifier == 'u')
+		return ((int) ft_putnbr_unsigned_fd(va_arg(args, unsigned int),
+				STDOUT_FILENO));
+	if (specifier == 'p')
+		return (handle_p_specifier(args));
 	return (1);
+}
+
+static int handle_p_specifier(va_list args)
+{
+	int bytes_printed;
+
+	bytes_printed = 0;
+	bytes_printed += ft_putstr_fd("0x", STDOUT_FILENO);
+	bytes_printed += ft_putnbr_base(va_arg(args, unsigned long),
+	                                HEX_LOWER_BASE, STDOUT_FILENO);
+	return (bytes_printed);
 }

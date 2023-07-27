@@ -24,7 +24,7 @@
 
 // Constants
 # define FLAGS "-0.#+ "
-# define CONVERSIONS "cspdiuxX%%"
+# define CONVERSIONS "cspdiuxX%"
 # define HEX_LOWER_BASE "0123456789abcdef"
 # define HEX_UPPER_BASE "0123456789ABCDEF"
 
@@ -41,6 +41,6 @@
  * For more info consult the manual (man 3 printf)
 */
 int	ft_printf(const char *format, ...);
-int	handle_specifier(char specifier, const char *str, va_list args);
+int	handle_specifier(char specifier, va_list args);
 
 #endif // FT_PRINTF_H

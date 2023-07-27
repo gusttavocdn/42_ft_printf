@@ -37,10 +37,13 @@ static int	print_format(const char *str, va_list args)
 	while (*str != '\0')
 	{
 		if (*str == '%')
-			str += handle_flag_specifier(++str, args, &bytes_printed);
+		{
+			str++;
+			str += handle_flag_specifier(str, args, &bytes_printed);
+		}
 		else
 		{
-			bytes_printed += ft_putchar_fd(*str, STDOUT_FILENO);
+			bytes_printed += (int)ft_putchar_fd(*str, STDOUT_FILENO);
 			str++;
 		}
 	}
@@ -50,11 +53,10 @@ static int	print_format(const char *str, va_list args)
 // TODO: Implement function to handle flags
 static int	handle_flag_specifier(const char *str, va_list args, int *bytes)
 {
+	(void)str;
 	if (is_is_a_specifier(str[0]))
-	{
-		*bytes += handle_specifier(str[0], str, args);
-		return (1);
-	}
+		*bytes += handle_specifier(str[0], args);
+
 	// if (it_is_a_flag(str[0]))
 	// 	return (handle_flag(str[0], str, args));
 	return (1);

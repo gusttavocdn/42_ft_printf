@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_unsigned_fd.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/26 12:13:15 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/27 03:10:36 by gusda-si         ###   ########.fr       */
+/*   Created: 2023/07/27 02:38:49 by gusda-si          #+#    #+#             */
+/*   Updated: 2023/07/27 03:06:02 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../../includes/libft.h"
 
-int	main(void)
+ssize_t	ft_putnbr_unsigned_fd(unsigned int n, int fd)
 {
-	int	my_result;
-	int	printf_result;
-	char *str = "Hello World!";
+	t_byte_u	base_len;
+	ssize_t		bytes_written;
 
-	my_result = ft_printf("%p\n", (void *)str);
-	printf_result = printf("%p\n", (void *)str);
-	return (0);
+	bytes_written = 0;
+	base_len = 10;
+	if (n >= base_len)
+		bytes_written += ft_putnbr_unsigned_fd(n / 10, fd);
+	bytes_written += ft_putchar_fd((n % 10) + '0', fd);
+	return (bytes_written);
 }

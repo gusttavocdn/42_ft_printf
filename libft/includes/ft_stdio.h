@@ -67,4 +67,12 @@ ssize_t	ft_putnbr_base(long int nbr, char *base, int fd);
 */
 char	*ft_gnl(int fd);
 
+/**
+ * @brief Outputs the unsigned integer "n" to the given fd
+ * @param n The number to output
+ * @param fd The file descriptor on which to write
+ * @return The number of bytes written
+*/
+ssize_t	ft_putnbr_unsigned_fd(unsigned int n, int fd);
+
 #endif // FT_STDIO_H

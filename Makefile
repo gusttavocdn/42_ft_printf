@@ -19,7 +19,7 @@ LIBFT 	:=  $(LIBFT_PATH)/libft.a
 ################################################################################
 
 SRC_DIR	:= 	src/
-SRC_FILES	:= ft_printf.c conversion_flag_handler.c
+SRC_FILES	:= ft_printf.c specifier_handler.c
 
 SRC := $(addprefix $(SRC_DIR), $(SRC_FILES))
 	
