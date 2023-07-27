@@ -33,6 +33,13 @@
 // Macro declarations
 
 // Struct declarations
+typedef struct s_flags {
+	t_bool has_hash;
+	t_bool has_zero;
+	t_bool has_space;
+	t_bool has_plus;
+	t_bool has_minus;
+} t_flags;
 
 // Function declarations
 
@@ -42,5 +49,7 @@
 */
 int	ft_printf(const char *format, ...);
 int	handle_specifier(char specifier, va_list args);
-
+void handle_flags(const char *str, va_list args);
+t_bool	it_is_a_specifier(char flag);
+t_bool	it_is_a_flag(char flag);
 #endif // FT_PRINTF_H

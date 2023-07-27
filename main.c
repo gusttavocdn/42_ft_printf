@@ -16,9 +16,9 @@ int	main(void)
 {
 	int	my_result;
 	int	printf_result;
-	char *str = "Hello World!";
+//	char *str = "Hello World!";
 
-	my_result = ft_printf("%p\n", (void *)str);
-	printf_result = printf("%p\n", (void *)str);
+	my_result = ft_printf("%#x\n", 42);
+	printf_result = printf("%#x\n", 42);
 	return (0);
 }

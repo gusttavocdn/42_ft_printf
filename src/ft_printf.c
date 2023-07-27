@@ -15,8 +15,9 @@
 static int		print_format(const char *str, va_list args);
 static int		handle_flag_specifier(const char *str, va_list args,
 					int *bytes);
-// static t_bool	it_is_a_flag(char flag);
-static t_bool	is_is_a_specifier(char flag);
+
+// The overall syntax of a conversion specification is:
+//           %[$][flags][width][.precision][length modifier]conversion
 
 int	ft_printf(const char *str, ...)
 {
@@ -54,38 +55,12 @@ static int	print_format(const char *str, va_list args)
 static int	handle_flag_specifier(const char *str, va_list args, int *bytes)
 {
 	(void)str;
-	if (is_is_a_specifier(str[0]))
+	if (it_is_a_specifier(str[0]))
 		*bytes += handle_specifier(str[0], args);
-
-	// if (it_is_a_flag(str[0]))
-	// 	return (handle_flag(str[0], str, args));
+	else if (it_is_a_flag(str[0]))
+	 	handle_flags(str, args);
 	return (1);
 }
 
-// static t_bool	it_is_a_flag(char flag)
-// {
-// 	size_t	counter;
 
-// 	counter = 0;
-// 	while (FLAGS[counter] != '\0')
-// 	{
-// 		if (FLAGS[counter] == flag)
-// 			return (TRUE);
-// 		counter++;
-// 	}
-// 	return (FALSE);
-// }
 
-static t_bool	is_is_a_specifier(char flag)
-{
-	size_t	counter;
-
-	counter = 0;
-	while (CONVERSIONS[counter] != '\0')
-	{
-		if (CONVERSIONS[counter] == flag)
-			return (TRUE);
-		counter++;
-	}
-	return (FALSE);
-}

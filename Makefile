@@ -19,7 +19,8 @@ LIBFT 	:=  $(LIBFT_PATH)/libft.a
 ################################################################################
 
 SRC_DIR	:= 	src/
-SRC_FILES	:= ft_printf.c specifier_handler.c
+SRC_FILES	:= ft_printf.c specifier_handler.c flags_handler.c \
+			flags_and_specifiers_verifiers.c \
 
 SRC := $(addprefix $(SRC_DIR), $(SRC_FILES))
 	
