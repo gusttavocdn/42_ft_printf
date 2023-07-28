@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:17:38 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/17 19:14:46 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/07/28 13:42:52 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,19 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void	*pointer;
+	char	*pointer;
+	size_t	i;
 
-	if (nmemb > ULONG_MAX / size)
+	i = 0;
+	if (!size || !nmemb)
+		return (malloc(0));
+	if (nmemb > __SIZE_MAX__ / size)
 		return (NULL);
-	pointer = malloc(nmemb * size);
-	if (pointer == NULL)
-		return (NULL);
-	ft_bzero(pointer, nmemb * size);
+	pointer = malloc(size * nmemb);
+	while (i < size * nmemb)
+	{
+		pointer[i] = 0;
+		i++;
+	}
 	return (pointer);
 }

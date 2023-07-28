@@ -12,18 +12,18 @@
 
 #include "../includes/ft_printf.h"
 
-static void verify_what_flags_i_have(t_flags *flags, const char *str);
+static void	verify_what_flags_i_have(t_flags *flags, const char *str);
 
-void handle_flags(const char *str, va_list args)
+void	handle_flags(const char *str, va_list args)
 {
-	t_flags flags;
+	t_flags	flags;
+
 	(void)args;
 	verify_what_flags_i_have(&flags, str);
 }
 
-static void verify_what_flags_i_have(t_flags *flags, const char *str)
+static void	verify_what_flags_i_have(t_flags *flags, const char *str)
 {
-
 	while (!it_is_a_specifier(*str) && *str != '\0')
 	{
 		if (*str == '#')

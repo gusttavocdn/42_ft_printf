@@ -75,4 +75,11 @@ char	*ft_gnl(int fd);
 */
 ssize_t	ft_putnbr_unsigned_fd(unsigned int n, int fd);
 
+/**
+ * @brief Outputs a memory address to the given fd
+ * @param number The memory address to output
+ * @param fd The file descriptor on which to write
+ */
+ssize_t	ft_putmem_fd(unsigned long number, int fd);
+
 #endif // FT_STDIO_H

@@ -12,9 +12,8 @@
 
 #include "../includes/ft_printf.h"
 
-static int		print_format(const char *str, va_list args);
-static int		handle_flag_specifier(const char *str, va_list args,
-					int *bytes);
+static int	print_format(const char *str, va_list args);
+static int	handle_flag_specifier(const char *str, va_list args, int *bytes);
 
 // The overall syntax of a conversion specification is:
 //           %[$][flags][width][.precision][length modifier]conversion
@@ -58,9 +57,6 @@ static int	handle_flag_specifier(const char *str, va_list args, int *bytes)
 	if (it_is_a_specifier(str[0]))
 		*bytes += handle_specifier(str[0], args);
 	else if (it_is_a_flag(str[0]))
-	 	handle_flags(str, args);
+		handle_flags(str, args);
 	return (1);
 }
-
-
-

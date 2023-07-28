@@ -72,7 +72,7 @@ ${LIBFT}:
 
 run: 		all
 			@echo "$(GREEN)Running...\n$(CLR_RMV)"
-			@${CC} ${FLAGS} -o ft_printf main.c ${NAME}
+			@${CC} ${FLAGS} -o ft_printf main.c ./src/*.c ${LIBFT_PATH}/src/*/*.c
 			@./ft_printf
 
 .PHONY:		all clean fclean re run

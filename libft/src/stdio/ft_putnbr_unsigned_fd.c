@@ -20,7 +20,7 @@ ssize_t	ft_putnbr_unsigned_fd(unsigned int n, int fd)
 	bytes_written = 0;
 	base_len = 10;
 	if (n >= base_len)
-		bytes_written += ft_putnbr_unsigned_fd(n / 10, fd);
+		bytes_written += ft_putnbr_unsigned_fd(n / base_len, fd);
 	bytes_written += ft_putchar_fd((n % 10) + '0', fd);
 	return (bytes_written);
 }
