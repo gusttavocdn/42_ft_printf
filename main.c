@@ -49,6 +49,60 @@ int main(void)
 //	printf("FT => %d\n", ft_result);
 //
 
+	// Tests "-" flag for S specifier
+//	og_result = printf("OG: %1s\n", "");
+//	ft_result = ft_printf("FT: %1s\n", "");
+//	printf("OG => %d\n", og_result);
+//	printf("FT => %d\n", ft_result);
+//
+//	og_result = printf("OG: %-1s\n", "");
+//	ft_result = ft_printf("FT: %-1s\n", "");
+//	printf("OG => %d\n", og_result);
+//	printf("FT => %d\n", ft_result);
+//
+//	og_result = printf("OG: %-2s\n", "");
+//	ft_result = ft_printf("FT: %-2s\n", "");
+//	printf("OG => %d\n", og_result);
+//	printf("FT => %d\n", ft_result);
+
+ 	// Tests "-" flag for P specifier
+//	 og_result = printf("%2p\n", (void *)-1);
+//	 ft_result = ft_printf("%2p\n", (void *)-1);
+//	 printf("OG => %d\n", og_result);
+//	 printf("FT => %d\n", ft_result);
+//
+//	og_result = printf("OG: %-2p\n", (void *)-1);
+//	ft_result = ft_printf("FT: %-2p\n", (void *)-1);
+//	printf("OG => %d\n", og_result);
+//	printf("FT => %d\n", ft_result);
+
+//	og_result = printf("OG: %-9p %-10p\n", (void *)LONG_MIN, (void *)LONG_MAX);
+//	ft_result = ft_printf("FT: %-9p %-10p\n", (void *)LONG_MIN, (void *)
+//	LONG_MAX);
+//	printf("OG => %d\n", og_result);
+//	printf("FT => %d\n", ft_result);
+//
+//	og_result = printf("OG: %-13p %-14p\n", (void *)ULONG_MAX, (void *)
+//	-ULONG_MAX);
+//	ft_result = ft_printf("FT: %-13p %-14p\n", (void *)ULONG_MAX, (void *)
+//	-ULONG_MAX);
+//	printf("OG => %d\n", og_result);
+//	printf("FT => %d\n", ft_result);
+//
+//	og_result = printf("OG: %-2p\n", (void *)15);
+//	ft_result = ft_printf("FT: %-2p\n", (void *)15);
+//	printf("OG => %d\n", og_result);
+//	printf("FT => %d\n", ft_result);
+
+//	og_result = printf("OG: %-4p\n", (void *)17);
+//	ft_result = ft_printf("FT: %-4p\n", (void *)17);
+//	printf("OG => %d\n", og_result);
+//	printf("FT => %d\n", ft_result);
+
+	og_result = printf("OG: %-1p %-2p\n", (void *)0, (void*)0);
+	ft_result = ft_printf("FT: %-1p %-2p\n", (void *)0, (void*)0);
+	printf("OG => %d\n", og_result);
+	printf("FT => %d\n", ft_result);
 
 	return 0;
 }

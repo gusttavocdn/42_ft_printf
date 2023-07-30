@@ -83,4 +83,12 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
 */
 int		ft_abs(int number);
 
+/**
+ * @brief This function converts a number in a string
+ * @param number The number to be converted.
+ * @param base the base
+ * @return A pointer allocated with malloc to a string
+ */
+char	*ft_itoa_base_u(unsigned long number, char *base);
+
 #endif // FT_MATH_H

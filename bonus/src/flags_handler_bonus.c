@@ -89,7 +89,7 @@ static int	apply_flags(t_flags *flags, va_list args)
 	bytes = 0;
 	argument_ptr = 0;
 	argument = get_argument(flags->specifier, args);
-	if (*argument == '0')
+	if (*argument == '0' && *(argument + 1) == '\0')
 		bytes+= ((int)ft_putchar_fd('0', STDOUT_FILENO));
 	else if (*argument == '\0' && flags->specifier == c)
 	  bytes += ((int)ft_putchar_fd('\0', STDOUT_FILENO));

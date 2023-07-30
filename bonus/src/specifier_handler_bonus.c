@@ -43,7 +43,7 @@ static int	handle_p_specifier(va_list args)
 	int				bytes_printed;
 	unsigned long	pointer;
 
-	pointer = va_arg(args, unsigned long);
+	pointer = va_arg(args, unsigned int);
 	if (!pointer)
 		return ((int)ft_putstr_fd("(nil)", STDOUT_FILENO));
 	bytes_printed = 0;

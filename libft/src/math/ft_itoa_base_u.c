@@ -1,42 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_itoa_base_u.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/18 17:30:20 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/30 17:59:27 by gusda-si         ###   ########.fr       */
+/*   Created: 2023/07/30 17:58:53 by gusda-si          #+#    #+#             */
+/*   Updated: 2023/07/30 18:03:26 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-char	*ft_itoa_base(long int number, char *base)
+static int	ft_calc_nbr_digits_u(size_t number, int base_len);
+
+char	*ft_itoa_base_u(unsigned long number, char *base)
 {
 	char		*number_str;
 	int			number_len;
 	int			base_len;
-	long int	nbr;
 
-	nbr = number;
 	base_len = ft_strlen(base);
-	number_len = ft_calc_nbr_digits(number, base_len);
-	number_str = (char *)malloc(number_len + sizeof(char));
+	number_len = ft_calc_nbr_digits_u(number, base_len);
+	number_str = (char *)ft_calloc(number_len + NULL_BYTE, sizeof(char));
 	if (!number_str)
 		return (NULL);
-	if (nbr == 0)
+	if (number == 0)
 		number_str[0] = '0';
-	number_str[number_len] = '\0';
-	if (nbr < 0)
+	while (number != 0)
 	{
-		number_str[0] = '-';
-		nbr *= -1;
-	}
-	while (nbr != 0)
-	{
-		number_str[--number_len] = base[nbr % base_len];
-		nbr /= base_len;
+		number_str[--number_len] = base[number % base_len];
+		number /= base_len;
 	}
 	return (number_str);
+}
+
+
+static int	ft_calc_nbr_digits_u(size_t number, int base_len)
+{
+	int	digits;
+
+	digits = 1;
+	number /= base_len;
+	while (number)
+	{
+		digits++;
+		number /= base_len;
+	}
+	return (digits);
 }

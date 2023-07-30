@@ -13,6 +13,7 @@
 #include "../includes/ft_printf_bonus.h"
 
 static char *handle_c_specifier(va_list args);
+static char*	handle_p_specifier(va_list args);
 
 char	*get_argument(t_specifiers specifier, va_list args)
 {
@@ -31,7 +32,7 @@ char	*get_argument(t_specifiers specifier, va_list args)
 	if (specifier == u)
 		return (ft_itoa(va_arg(args, unsigned int)));
 	if (specifier == p)
-		return (ft_itoa(va_arg(args, unsigned long)));
+		return (handle_p_specifier(args));
 	return (NULL);
 }
 
@@ -55,5 +56,27 @@ static char *handle_c_specifier(va_list args)
 	c = va_arg(args, int);
 	str = ft_calloc(2, sizeof(char));
 	str[0] = c;
+	return (str);
+}
+
+static char*	handle_p_specifier(va_list args)
+{
+	char	*str;
+	char 	*itoa_pointer;
+	unsigned long pointer;
+
+	pointer = va_arg(args, unsigned long);
+	if (pointer == 0)
+		return (ft_strdup("(nil)"));
+	itoa_pointer = ft_itoa_base_u(pointer, HEX_LOWER);
+	if (itoa_pointer == NULL)
+		return  (ft_strdup("(nil)"));
+	str = ft_strjoin("0x", itoa_pointer);
+	if (str == NULL)
+	{
+		free(itoa_pointer);
+		return (ft_strdup("(nil)"));
+	}
+	free(itoa_pointer);
 	return (str);
 }

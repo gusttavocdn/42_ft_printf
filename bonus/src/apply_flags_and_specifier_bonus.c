@@ -49,7 +49,7 @@ int	apply_width(t_flags *flags, char *number, char padding_char)
 	padding_len = flags->width - flags->precision - is_negative - has_plus;
 	if (flags->precision < 0)
 		padding_len = flags->width - (int)ft_strlen(number);
-	if (flags->precision < 0 && !ft_strlen(number))
+	if (flags->precision < 0 && !ft_strlen(number) && flags->specifier != s)
 		padding_len--;
 	while (counter < padding_len)
 	{
