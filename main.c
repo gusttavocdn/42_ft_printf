@@ -111,21 +111,27 @@ int main(void)
 
 // Test with + flag
 
-	og_result = printf("OG: 20 in decimal %+d\n", 20);
-	printf("OG => %d\n", og_result);
-	ft_result = ft_printf("FT: 20 in decimal %+d\n", 20);
-	printf("FT => %d\n", ft_result);
+//	og_result = printf("OG: 20 in decimal %+d\n", 20);
+//	printf("OG => %d\n", og_result);
+//	ft_result = ft_printf("FT: 20 in decimal %+d\n", 20);
+//	printf("FT => %d\n", ft_result);
+//
+//	og_result = printf("OG: 20 in decimal %+d\n", -20);
+//	printf("OG => %d\n", og_result);
+//	ft_result = ft_printf("FT: 20 in decimal %+d\n", -20);
+//	printf("FT => %d\n", ft_result);
+//
+//
+//	og_result = printf("OG: 20 in decimal %+43.10d\n", 20);
+//	printf("OG => %d\n", og_result);
+//	ft_result = ft_printf("FT: 20 in decimal %+43.10d\n", 20);
+//	printf("FT => %d\n", ft_result);
 
-	og_result = printf("OG: 20 in decimal %+d\n", -20);
-	printf("OG => %d\n", og_result);
-	ft_result = ft_printf("FT: 20 in decimal %+d\n", -20);
-	printf("FT => %d\n", ft_result);
+//	og_result = printf("OG: LONG MAX %x", LONG_MAX);
+//	ft_result = ft_printf("FT: LONG MAX %x", LONG_MAX);
+//	printf("OG => %d\n", og_result);
+//	printf("FT => %d\n", ft_result);
 
-
-	og_result = printf("OG: 20 in decimal %+43.10d\n", 20);
-	printf("OG => %d\n", og_result);
-	ft_result = ft_printf("FT: 20 in decimal %+43.10d\n", 20);
-	printf("FT => %d\n", ft_result);
 
 	return 0;
 }

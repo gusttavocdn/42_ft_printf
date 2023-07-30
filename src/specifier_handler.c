@@ -23,10 +23,10 @@ int	handle_with_just_specifier(char specifier, va_list args)
 	if (specifier == 'd' || specifier == 'i')
 		return ((int)ft_putnbr_fd(va_arg(args, int), STDOUT_FILENO));
 	if (specifier == 'x')
-		return ((int)ft_putnbr_base(va_arg(args, long int), HEX_LOWER,
+		return ((int)ft_putnbr_base(va_arg(args, unsigned int), HEX_LOWER,
 				STDOUT_FILENO));
 	if (specifier == 'X')
-		return ((int)ft_putnbr_base(va_arg(args, long int), HEX_UPPER,
+		return ((int)ft_putnbr_base(va_arg(args, unsigned int), HEX_UPPER,
 				STDOUT_FILENO));
 	if (specifier == '%')
 		return ((int)ft_putchar_fd('%', STDOUT_FILENO));

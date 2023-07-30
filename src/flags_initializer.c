@@ -21,9 +21,9 @@ char	*get_argument(t_specifiers specifier, va_list args)
 	if (specifier == d || specifier == i)
 		return (ft_itoa(va_arg(args, int)));
 	if (specifier == x)
-		return (ft_itoa_base(va_arg(args, long int), HEX_LOWER));
+		return (ft_itoa_base(va_arg(args, unsigned int), HEX_LOWER));
 	if (specifier == X)
-		return (ft_itoa_base(va_arg(args, long int), HEX_UPPER));
+		return (ft_itoa_base(va_arg(args, unsigned int), HEX_UPPER));
 	if (specifier == percent)
 		return (ft_strdup("%"));
 	if (specifier == u)
