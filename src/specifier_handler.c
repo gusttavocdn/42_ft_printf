@@ -14,7 +14,7 @@
 
 static int	handle_p_specifier(va_list args);
 
-int	handle_specifier(char specifier, va_list args)
+int	handle_with_just_specifier(char specifier, va_list args)
 {
 	if (specifier == 'c')
 		return ((int)ft_putchar_fd(va_arg(args, int), STDOUT_FILENO));

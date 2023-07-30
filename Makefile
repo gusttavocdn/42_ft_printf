@@ -18,6 +18,9 @@ LIBFT 	:=  $(LIBFT_PATH)/libft.a
 #                           PROGRAM'S SRCS                                     #
 ################################################################################
 
+MAIN := main.c
+PROGRAM := ft_printf
+
 SRC_DIR	:= 	src/
 SRC_FILES	:= ft_printf.c specifier_handler.c flags_handler.c \
 			flags_and_specifiers_verifiers.c \
@@ -72,8 +75,8 @@ ${LIBFT}:
 
 run: 		all
 			@echo "$(GREEN)Running...\n$(CLR_RMV)"
-			@${CC} ${FLAGS} -o ft_printf main.c ./src/*.c ${LIBFT_PATH}/src/*/*.c
-			@./ft_printf
+			@${CC} ${FLAGS} -o ft_printf ${MAIN} ./src/*.c ${LIBFT_PATH}/src/*/*.c
+			@./${PROGRAM}
 
 .PHONY:		all clean fclean re run
 

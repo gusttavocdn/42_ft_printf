@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   flags_and_specifiers_verifiers.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:29 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/26 14:41:07 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/07/29 09:50:55 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ t_bool	it_is_a_specifier(char flag)
 	size_t	counter;
 
 	counter = 0;
-	while (CONVERSIONS[counter] != '\0')
+	while (SPECIFIERS[counter] != '\0')
 	{
-		if (CONVERSIONS[counter] == flag)
+		if (SPECIFIERS[counter] == flag)
 			return (TRUE);
 		counter++;
 	}

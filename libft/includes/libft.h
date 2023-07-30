@@ -37,6 +37,7 @@
 # define HEX_LOWER "0123456789abcdef"
 # define HEX_UPPER "0123456789ABCDEF"
 # define HEX_SIZE 16
+# define DECIMAL "0123456789"
 
 // Types
 
