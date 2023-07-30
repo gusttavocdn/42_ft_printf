@@ -24,11 +24,13 @@ int	apply_prefix(t_flags *flags, char *number)
 	if (flags->has_hash && (flags->specifier == 'X' || flags->specifier == 'x'))
 		bytes += apply_hash_flag(flags);
 	if (flags->has_plus && number[0] != '-')
-		bytes += ft_putchar_fd('+', STDOUT_FILENO);
+		bytes += (int)ft_putchar_fd('+', STDOUT_FILENO);
 	if (flags->precision > 0)
 		bytes += apply_precision(flags, number);
 	if (flags->has_zero)
 		bytes += apply_width(flags, number, '0');
+	if (flags->has_space && number[0] != '-')
+		bytes += (int)ft_putchar_fd(' ', STDOUT_FILENO);
 	return (bytes);
 }
 

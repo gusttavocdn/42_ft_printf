@@ -13,21 +13,11 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-// Standard Library headers
-//# include <stdio.h>
-//# include <unistd.h>
-
 // Related headers
-# include "../libft/includes/libft.h"
+# include "../../libft/includes/libft.h"
 # include <stdarg.h>
-# include <stdio.h>
-
-// Constants
-# define FLAGS "-0.#+ "
-# define SPECIFIERS "cspdiuxX%"
 
 // Enum declarations
-
 typedef enum e_specifiers
 {
 	c = 'c',
@@ -42,6 +32,8 @@ typedef enum e_specifiers
 }					t_specifiers;
 
 // Macro declarations
+# define FLAGS "-0.#+ "
+# define SPECIFIERS "cspdiuxX%"
 
 // Struct declarations
 typedef struct s_flags
@@ -57,7 +49,6 @@ typedef struct s_flags
 }					t_flags;
 
 // Function declarations
-
 /**
  * @brief This function can write a formatted string to the standard output.
  * For more info consult the manual (man 3 printf)
@@ -65,7 +56,7 @@ typedef struct s_flags
 int					ft_printf(const char *format, ...);
 int					handle_with_just_specifier(char specifier, va_list args);
 int					handle_with_flags(const char *str, va_list args,
-						int *walked_bytes, int bytes_printed_so_far);
+						int *walked_bytes);
 t_bool				it_is_a_specifier(char flag);
 t_bool				it_is_a_flag(char flag);
 int					apply_prefix(t_flags *flags, char *number);

@@ -15,19 +15,17 @@
 static int	verify_what_flags_i_have(t_flags *flags, const char *str);
 static void	verify_width(t_flags *flags, const char *str);
 static void	verify_precision(t_flags *flags, const char *str);
-static int	apply_flags(const char *str, t_flags *flags, va_list args);
+static int	apply_flags(t_flags *flags, va_list args);
 
-int	handle_with_flags(const char *str, va_list args, int *walked_bytes,
-		int bytes_printed_so_far)
+int	handle_with_flags(const char *str, va_list args, int *walked_bytes)
 {
 	t_flags	flags;
 	int		bytes_printed;
 
-	(void)bytes_printed_so_far;
 	bytes_printed = 0;
 	init_flags(&flags);
 	*walked_bytes += verify_what_flags_i_have(&flags, str);
-	bytes_printed += apply_flags(str, &flags, args);
+	bytes_printed += apply_flags(&flags, args);
 	return (bytes_printed);
 }
 
@@ -46,6 +44,10 @@ static int	verify_what_flags_i_have(t_flags *flags, const char *str)
 			flags->has_zero = my_true;
 		else if (str[walked_bytes_for_flags] == '+')
 			flags->has_plus = my_true;
+		else if (str[walked_bytes_for_flags] == ' ')
+			flags->has_space = my_true;
+		else if (str[walked_bytes_for_flags] == '-')
+			flags->has_minus = my_true;
 		walked_bytes_for_flags++;
 	}
 	verify_width(flags, str);
@@ -78,13 +80,12 @@ static void	verify_width(t_flags *flags, const char *str)
 	}
 }
 
-static int	apply_flags(const char *str, t_flags *flags, va_list args)
+static int	apply_flags(t_flags *flags, va_list args)
 {
 	int		bytes;
 	char	*argument;
 	size_t	argument_ptr;
 
-	(void)str;
 	bytes = 0;
 	argument_ptr = 0;
 	argument = get_argument(flags->specifier, args);
@@ -93,7 +94,7 @@ static int	apply_flags(const char *str, t_flags *flags, va_list args)
 		free(argument);
 		return ((int)ft_putchar_fd('0', STDOUT_FILENO));
 	}
-	if (!flags->has_zero)
+	if (!flags->has_zero && !flags->has_minus)
 		bytes += apply_width(flags, argument, ' ');
 	if (argument[argument_ptr] == '-' && flags->specifier != s)
 	{
@@ -102,6 +103,8 @@ static int	apply_flags(const char *str, t_flags *flags, va_list args)
 	}
 	bytes += apply_prefix(flags, argument);
 	bytes += (int)ft_putstr_fd(&argument[argument_ptr], STDOUT_FILENO);
+	if (flags->has_minus)
+		bytes += apply_width(flags, argument, ' ');
 	free(argument);
 	return (bytes);
 }

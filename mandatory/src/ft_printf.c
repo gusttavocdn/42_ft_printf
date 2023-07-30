@@ -58,7 +58,6 @@ static int	handle_flags_and_specifiers(const char *str, va_list args,
 		walked_bytes = 1;
 	}
 	else if (it_is_a_flag(str[0]) || ft_atoi(str) > 0)
-		*bytes += handle_with_flags(&str[walked_bytes], args, &walked_bytes,
-				*bytes);
+		*bytes += handle_with_flags(&str[walked_bytes], args, &walked_bytes);
 	return (walked_bytes);
 }
