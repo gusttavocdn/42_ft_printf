@@ -30,7 +30,7 @@ char	*get_argument(t_specifiers specifier, va_list args)
 	if (specifier == percent)
 		return (ft_strdup("%"));
 	if (specifier == u)
-		return (ft_itoa(va_arg(args, unsigned int)));
+		return (ft_itoa_base_u(va_arg(args, unsigned int), DECIMAL));
 	if (specifier == p)
 		return (handle_p_specifier(args));
 	return (NULL);
