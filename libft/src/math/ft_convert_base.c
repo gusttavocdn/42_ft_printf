@@ -37,9 +37,9 @@ static t_bool	there_is_base_errors(char *base)
 	while (i < base_len)
 	{
 		if (ft_isspace(base[i]))
-			return (true);
+			return (my_true);
 		if (base[i] == '+' || base[i] == '-')
-			return (true);
+			return (my_true);
 		j = i + 1;
 		while (j < base_len)
 		{
@@ -49,5 +49,5 @@ static t_bool	there_is_base_errors(char *base)
 		}
 		i++;
 	}
-	return (false);
+	return (my_false);
 }

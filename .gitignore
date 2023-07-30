@@ -59,5 +59,6 @@ CMakeLists.txt
 # *main*
 .idea
 ft_printf
+printfTester
 
 # End of https://www.toptal.com/developers/gitignore/api/c

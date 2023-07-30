@@ -35,11 +35,11 @@ char	*get_argument(t_specifiers specifier, va_list args)
 
 void	init_flags(t_flags *flags)
 {
-	flags->has_minus = false;
-	flags->has_hash = false;
-	flags->has_zero = false;
-	flags->has_space = false;
-	flags->has_plus = false;
+	flags->has_minus = my_false;
+	flags->has_hash = my_false;
+	flags->has_zero = my_false;
+	flags->has_space = my_false;
+	flags->has_plus = my_false;
 	flags->width = -1;
 	flags->precision = -1;
 }

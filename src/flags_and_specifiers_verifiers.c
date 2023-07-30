@@ -20,10 +20,10 @@ t_bool	it_is_a_flag(char flag)
 	while (FLAGS[counter] != '\0')
 	{
 		if (FLAGS[counter] == flag)
-			return (TRUE);
+			return (my_true);
 		counter++;
 	}
-	return (FALSE);
+	return (my_false);
 }
 
 t_bool	it_is_a_specifier(char flag)
@@ -34,8 +34,8 @@ t_bool	it_is_a_specifier(char flag)
 	while (SPECIFIERS[counter] != '\0')
 	{
 		if (SPECIFIERS[counter] == flag)
-			return (TRUE);
+			return (my_true);
 		counter++;
 	}
-	return (FALSE);
+	return (my_false);
 }

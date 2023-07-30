@@ -23,7 +23,8 @@ PROGRAM := ft_printf
 
 SRC_DIR	:= 	src/
 SRC_FILES	:= ft_printf.c specifier_handler.c flags_handler.c \
-			flags_and_specifiers_verifiers.c \
+			flags_and_specifiers_verifiers.c apply_flags_and_specifier.c \
+			flags_initializer.c
 
 SRC := $(addprefix $(SRC_DIR), $(SRC_FILES))
 	

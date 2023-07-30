@@ -40,12 +40,12 @@ static int	verify_what_flags_i_have(t_flags *flags, const char *str)
 		&& str[walked_bytes_for_flags] != '\0')
 	{
 		if (str[walked_bytes_for_flags] == '#')
-			flags->has_hash = TRUE;
+			flags->has_hash = my_true;
 		else if (str[walked_bytes_for_flags] == '0'
 			&& !ft_isdigit(str[walked_bytes_for_flags - 1]))
-			flags->has_zero = TRUE;
+			flags->has_zero = my_true;
 		else if (str[walked_bytes_for_flags] == '+')
-			flags->has_plus = TRUE;
+			flags->has_plus = my_true;
 		walked_bytes_for_flags++;
 	}
 	verify_width(flags, str);

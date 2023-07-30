@@ -68,8 +68,7 @@ typedef int64_t		t_8byte_i;
 // Enum to representing boolean values
 typedef enum e_bool
 {
-	true = TRUE,
-	false = FALSE,
+	my_false,
+	my_true
 }					t_bool;
-
 #endif
