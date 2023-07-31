@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flags_and_specifiers_verifiers.c                   :+:      :+:    :+:   */
+/*   precision_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/26 12:10:29 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/31 15:37:35 by gusda-si         ###   ########.fr       */
+/*   Created: 2023/07/31 14:59:21 by gusda-si          #+#    #+#             */
+/*   Updated: 2023/07/31 16:43:34 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../../includes/ft_printf_bonus.h"
 
-t_bool	is_flag(char flag)
+int	apply_precision(t_flags *flags, char *number)
 {
-	size_t	counter;
+	int	bytes;
+	int	counter;
+	int	is_negative;
 
+	bytes = 0;
 	counter = 0;
-	while (FLAGS[counter] != '\0')
+	is_negative = (number[0] == '-');
+	while (counter < (flags->precision - ((int)ft_strlen(number)
+				- is_negative)))
 	{
-		if (FLAGS[counter] == flag)
-			return (my_true);
+		ft_putchar_fd('0', STDOUT_FILENO);
 		counter++;
+		bytes++;
 	}
-	return (my_false);
-}
-
-t_bool	is_specifier(char flag)
-{
-	size_t	counter;
-
-	counter = 0;
-	while (SPECIFIERS[counter] != '\0')
-	{
-		if (SPECIFIERS[counter] == flag)
-			return (my_true);
-		counter++;
-	}
-	return (my_false);
+	return (bytes);
 }

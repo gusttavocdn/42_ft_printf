@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   specifier_handler.c                                :+:      :+:    :+:   */
+/*   specifier_without_flags_bonus.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:51:04 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/28 15:38:01 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:42:37 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf_bonus.h"
+#include "../../includes/ft_printf_bonus.h"
 
 static int	handle_p_specifier(va_list args);
 
-int	handle_with_just_specifier(char specifier, va_list args)
+int	handle_just_specifier(char specifier, va_list args)
 {
 	if (specifier == 'c')
 		return ((int)ft_putchar_fd(va_arg(args, int), STDOUT_FILENO));
@@ -32,7 +32,7 @@ int	handle_with_just_specifier(char specifier, va_list args)
 		return ((int)ft_putchar_fd('%', STDOUT_FILENO));
 	if (specifier == 'u')
 		return ((int)ft_putnbr_unsigned_fd(va_arg(args, unsigned int),
-				STDOUT_FILENO));
+											STDOUT_FILENO));
 	if (specifier == 'p')
 		return (handle_p_specifier(args));
 	return (1);

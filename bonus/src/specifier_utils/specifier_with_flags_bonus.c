@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flags_initializer.c                                :+:      :+:    :+:   */
+/*   specifier_with_flags_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 09:00:10 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/29 19:37:57 by gusda-si         ###   ########.fr       */
+/*   Created: 2023/07/31 15:31:24 by gusda-si          #+#    #+#             */
+/*   Updated: 2023/07/31 16:42:40 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf_bonus.h"
+#include "../../includes/ft_printf_bonus.h"
 
-static char *handle_c_specifier(va_list args);
-static char*	handle_p_specifier(va_list args);
+static char	*handle_c_specifier(va_list args);
+static char	*handle_p_specifier(va_list args);
 
-char	*get_argument(t_specifiers specifier, va_list args)
+char	*convert_specifier_to_str(t_specifiers specifier, va_list args)
 {
 	if (specifier == c)
 		return (handle_c_specifier(args));
@@ -36,19 +36,7 @@ char	*get_argument(t_specifiers specifier, va_list args)
 	return (NULL);
 }
 
-void	init_flags(t_flags *flags)
-{
-	flags->has_minus = my_false;
-	flags->has_hash = my_false;
-	flags->has_zero = my_false;
-	flags->has_space = my_false;
-	flags->has_plus = my_false;
-	flags->width = -1;
-	flags->precision = -1;
-}
-
-
-static char *handle_c_specifier(va_list args)
+static char	*handle_c_specifier(va_list args)
 {
 	char	*str;
 	char	c;
@@ -59,18 +47,18 @@ static char *handle_c_specifier(va_list args)
 	return (str);
 }
 
-static char*	handle_p_specifier(va_list args)
+static char	*handle_p_specifier(va_list args)
 {
-	char	*str;
-	char 	*itoa_pointer;
-	unsigned long pointer;
+	char			*str;
+	char			*itoa_pointer;
+	unsigned long	pointer;
 
 	pointer = va_arg(args, unsigned long);
 	if (pointer == 0)
 		return (ft_strdup("(nil)"));
 	itoa_pointer = ft_itoa_base_u(pointer, HEX_LOWER);
 	if (itoa_pointer == NULL)
-		return  (ft_strdup("(nil)"));
+		return (ft_strdup("(nil)"));
 	str = ft_strjoin("0x", itoa_pointer);
 	if (str == NULL)
 	{

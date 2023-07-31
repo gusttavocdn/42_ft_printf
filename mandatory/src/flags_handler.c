@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:10:06 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/29 21:32:53 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:42:53 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	verify_width(t_flags *flags, const char *str);
 static void	verify_precision(t_flags *flags, const char *str);
 static int	apply_flags(t_flags *flags, va_list args);
 
-int	handle_with_flags(const char *str, va_list args, int *walked_bytes)
+int	handle_flags(const char *str, va_list args, int *walked_bytes)
 {
 	t_flags	flags;
 	int		bytes_printed;
@@ -34,7 +34,7 @@ static int	verify_what_flags_i_have(t_flags *flags, const char *str)
 	int	walked_bytes_for_flags;
 
 	walked_bytes_for_flags = 0;
-	while (!it_is_a_specifier(str[walked_bytes_for_flags])
+	while (!is_specifier(str[walked_bytes_for_flags])
 		&& str[walked_bytes_for_flags] != '\0')
 	{
 		if (str[walked_bytes_for_flags] == '#')
@@ -69,7 +69,7 @@ static void	verify_precision(t_flags *flags, const char *str)
 
 static void	verify_width(t_flags *flags, const char *str)
 {
-	while (*str != '\0' && !it_is_a_specifier((*str)))
+	while (*str != '\0' && !is_specifier((*str)))
 	{
 		if (*str != '0' && ft_isdigit(*str) && *(str - 1) != '.')
 		{

@@ -40,3 +40,4 @@ char	*ft_itoa_base(long int number, char *base)
 	}
 	return (number_str);
 }
+

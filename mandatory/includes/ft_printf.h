@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:32 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/29 11:16:56 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:42:53 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ typedef struct s_flags
  * For more info consult the manual (man 3 printf)
 */
 int					ft_printf(const char *format, ...);
-int					handle_with_just_specifier(char specifier, va_list args);
-int					handle_with_flags(const char *str, va_list args,
+int					handle_just_specifier(char specifier, va_list args);
+int					handle_flags(const char *str, va_list args,
 						int *walked_bytes);
-t_bool				it_is_a_specifier(char flag);
-t_bool				it_is_a_flag(char flag);
+t_bool				is_specifier(char flag);
+t_bool				is_flag(char flag);
 int					apply_prefix(t_flags *flags, char *number);
 int					apply_width(t_flags *flags, char *number,
 						char padding_char);

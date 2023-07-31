@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:29 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/29 21:33:45 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:48:43 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,18 @@ static int	print_format(const char *str, va_list args)
 	return (bytes_printed);
 }
 
-// TODO: Implement function to handle flags
 static int	handle_flags_and_specifiers(const char *str, va_list args,
 		int *bytes)
 {
 	int	walked_bytes;
 
 	walked_bytes = 0;
-	if (it_is_a_specifier(str[0]))
+	if (is_specifier(str[0]))
 	{
-		*bytes += handle_with_just_specifier(str[0], args);
+		*bytes += handle_just_specifier(str[0], args);
 		walked_bytes = 1;
 	}
-	else if (it_is_a_flag(str[0]) || ft_atoi(str) > 0)
-		*bytes += handle_with_flags(&str[walked_bytes], args, &walked_bytes);
+	else if (is_flag(str[0]) || ft_atoi(str) > 0)
+		*bytes += handle_flags(&str[walked_bytes], args, &walked_bytes);
 	return (walked_bytes);
 }
