@@ -89,13 +89,13 @@ static int	apply_flags(t_flags *flags, va_list args)
 	bytes = 0;
 	argument_ptr = 0;
 	argument = get_argument(flags->specifier, args);
-	if (*argument == '0' && *(argument + 1) == '\0')
+	if (*argument == '0' && *(argument + 1) == '\0' && flags->specifier == s)
 		bytes+= ((int)ft_putchar_fd('0', STDOUT_FILENO));
 	else if (*argument == '\0' && flags->specifier == c)
 	  bytes += ((int)ft_putchar_fd('\0', STDOUT_FILENO));
 	else
 	{
-		if (!flags->has_zero && !flags->has_minus)
+		if (!flags->has_zero && !flags->has_minus && flags->width > 0)
 			bytes += apply_width(flags, argument, ' ');
 		if (argument[argument_ptr] == '-' && flags->specifier != s)
 		{

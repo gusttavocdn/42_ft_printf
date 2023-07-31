@@ -22,16 +22,11 @@ int main(void)
 	int ft_result;
 	int og_result;
 
-	// Tests for '-' flag i u specifier
-	og_result = printf("OG: %-2u\n", -1);
-	ft_result = ft_printf("FT: %-2u\n", -1);
+	og_result = printf("OG: %.s\n", "-");
+	ft_result = ft_printf("FT: %.s\n", "-");
 	printf("OG: %d\n", og_result);
 	printf("FT: %d\n", ft_result);
 
-	og_result = printf("OG: %-2u\n", -10);
-	ft_result = ft_printf("FT: %-2u\n", -10);
-	printf("OG: %d\n", og_result);
-	printf("FT: %d\n", ft_result);
 
 	return 0;
 }

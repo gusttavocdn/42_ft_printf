@@ -25,7 +25,7 @@ int	apply_prefix(t_flags *flags, char *number)
 		bytes += apply_hash_flag(flags);
 	if (flags->has_plus && number[0] != '-')
 		bytes += (int)ft_putchar_fd('+', STDOUT_FILENO);
-	if (flags->precision > 0)
+	if (flags->precision > 0 && flags->specifier != s)
 		bytes += apply_precision(flags, number);
 	if (flags->has_zero)
 		bytes += apply_width(flags, number, '0');
