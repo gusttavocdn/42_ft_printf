@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:51:04 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/31 16:42:37 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/08/01 02:11:13 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	handle_just_specifier(char specifier, va_list args)
 		return ((int)ft_putchar_fd('%', STDOUT_FILENO));
 	if (specifier == 'u')
 		return ((int)ft_putnbr_unsigned_fd(va_arg(args, unsigned int),
-											STDOUT_FILENO));
+				STDOUT_FILENO));
 	if (specifier == 'p')
 		return (handle_p_specifier(args));
 	return (1);

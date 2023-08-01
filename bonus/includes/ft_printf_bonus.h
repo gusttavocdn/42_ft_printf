@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/26 12:10:32 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/31 16:42:20 by gusda-si         ###   ########.fr       */
+/*   Created: 2023/08/01 02:08:18 by gusda-si          #+#    #+#             */
+/*   Updated: 2023/08/01 02:11:17 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FT_PRINTF_BONUS_H
+# define FT_PRINTF_BONUS_H
 
 // Related headers
 # include "../../libft/includes/libft.h"
@@ -63,13 +63,14 @@ char				*get_argument(t_specifiers specifier, va_list args);
 void				init_flags(t_flags *flags);
 
 // FLAGS APPLIERS
-int	apply_flags(t_flags *flags, va_list args);
-int					apply_hash(t_flags *flags);
+int					apply_flags(t_flags *flags, va_list args);
+int					apply_hash(t_flags *flags, char *number);
 int					apply_width(t_flags *flags, char *number,
 						char padding_char);
 int					apply_precision(t_flags *flags, char *number);
 int					apply_plus(t_flags *flags);
 int					apply_space(t_flags *flags);
-char	*convert_specifier_to_str(t_specifiers specifier, va_list args);
+char				*convert_specifier_to_str(t_specifiers specifier,
+						va_list args);
 
 #endif // FT_PRINTF_H

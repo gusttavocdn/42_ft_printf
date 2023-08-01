@@ -22,11 +22,27 @@ int main(void)
 	int ft_result;
 	int og_result;
 
-	og_result = printf("OG: %.s\n", "-");
-	ft_result = ft_printf("FT: %.s\n", "-");
+	og_result = printf("OG: %-s\n", "-");
+	ft_result = ft_printf("FT: %-s\n", "-");
 	printf("OG: %d\n", og_result);
 	printf("FT: %d\n", ft_result);
 
+	og_result = printf("OG: %-3s %-4s\n", " - ", "");
+	ft_result = ft_printf("FT: %-3s %-4s\n", " - ", "");
+	printf("OG: %d\n", og_result);
+	printf("FT: %d\n", ft_result);
+
+//	og_result = printf("OG: %.1s %.2s %.3s %.4s\n", " - ", "", "4", "");
+//	ft_result = ft_printf("FT: %.1s %.2s %.3s %.4s\n", " - ", "", "4", "");
+//	printf("OG: %d\n", og_result);
+//	printf("FT: %d\n", ft_result);
+//
+//	og_result = printf("OG: %.2s %.3s %.4s %.5s %.1s", " - ", "", "4", "", "2 ");
+//	printf("\n");
+//	ft_result = ft_printf("FT: %.2s %.3s %.4s %.5s %.1s", " - ", "", "4", "", "2 ");
+//	printf("\n");
+//	printf("OG: %d\n", og_result);
+//	printf("FT: %d\n", ft_result);
 
 	return 0;
 }

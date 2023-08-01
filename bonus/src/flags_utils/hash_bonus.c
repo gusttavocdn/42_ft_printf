@@ -12,8 +12,10 @@
 
 #include "../../includes/ft_printf_bonus.h"
 
-int	apply_hash(t_flags *flags)
+int	apply_hash(t_flags *flags, char *number)
 {
+	if (!ft_atoi_base(number, HEX_LOWER) && !ft_atoi_base(number, HEX_UPPER))
+		return (0);
 	if (flags->specifier == x)
 		return ((int)(ft_putstr_fd("0x", STDOUT_FILENO)));
 	else

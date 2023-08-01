@@ -59,7 +59,7 @@ int					handle_flags(const char *str, va_list args,
 						int *walked_bytes);
 t_bool				is_specifier(char flag);
 t_bool				is_flag(char flag);
-int					apply_prefix(t_flags *flags, char *number);
+int					apply_prefix(t_flags *flags, char *format);
 int					apply_width(t_flags *flags, char *number,
 						char padding_char);
 char				*get_argument(t_specifiers specifier, va_list args);

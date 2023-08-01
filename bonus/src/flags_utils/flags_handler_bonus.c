@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:10:06 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/31 16:43:38 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/08/01 02:11:15 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	verify_what_flags_i_have(t_flags *flags, const char *str)
 		if (str[walked_bytes_for_flags] == '#')
 			flags->has_hash = my_true;
 		else if (str[walked_bytes_for_flags] == '0'
-				&& !ft_isdigit(str[walked_bytes_for_flags - 1]))
+			&& !ft_isdigit(str[walked_bytes_for_flags - 1]))
 			flags->has_zero = my_true;
 		else if (str[walked_bytes_for_flags] == '+')
 			flags->has_plus = my_true;

@@ -130,7 +130,7 @@ run: 		all
 
 run_b: 		all
 			@echo "$(GREEN)Running...\n$(CLR_RMV)"
-			@${CC} ${FLAGS} -o ft_printf ${MAIN} $(BONUS_DIR)/src/*.c ${LIBFT_PATH}/src/*/*.c
+			@${CC} ${FLAGS} -o ft_printf ${MAIN} $(BONUS_DIR)/src/*.c  $(BONUS_DIR)/src/*/*.c ${LIBFT_PATH}/src/*/*.c
 			@./${PROGRAM}
 
 .PHONY:		all clean fclean re run bonus run_b
