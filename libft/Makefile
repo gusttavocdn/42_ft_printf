@@ -47,8 +47,30 @@ SRCS        :=  $(CHAR_LIB_SRCS) $(MATH_LIB_SRCS) $(MEM_LIB_SRCS) $(STR_LIB_SRCS
                           
 OBJS        := $(SRCS:.c=.o)
 
-src/%.o: src/%.c
-	${CC} ${FLAGS} -c $< -o $@
+$(CHAR_LIB)%.o:	$(CHAR_LIB)%.c 
+				@echo "$(GREEN)Compiling ${CLR_RMV}of ${YELLOW}$< ${CLR_RMV}..."
+				@${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I ./includes
+				@echo "$(GREEN)$< compiled ${CLR_RMV}✔️"
+
+$(MATH_LIB)%.o:	$(MATH_LIB)%.c
+				@echo "$(GREEN)Compiling ${CLR_RMV}of ${YELLOW}$< ${CLR_RMV}..."
+				@${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I ./includes
+				@echo "$(GREEN)$< compiled ${CLR_RMV}✔️"
+
+$(MEM_LIB)%.o:	$(MEM_LIB)%.c
+				@echo "$(GREEN)Compiling ${CLR_RMV}of ${YELLOW}$< ${CLR_RMV}..."
+				@${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I ./includes
+				@echo "$(GREEN)$< compiled ${CLR_RMV}✔️"
+
+$(STR_LIB)%.o:	$(STR_LIB)%.c
+				@echo "$(GREEN)Compiling ${CLR_RMV}of ${YELLOW}$< ${CLR_RMV}..."
+				@${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I ./includes
+				@echo "$(GREEN)$< compiled ${CLR_RMV}✔️"
+
+$(STDIO_LIB)%.o:	$(STDIO_LIB)%.c
+					@echo "$(GREEN)Compiling ${CLR_RMV}of ${YELLOW}$< ${CLR_RMV}..."
+					@${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I ./includes
+					@echo "$(GREEN)$< compiled ${CLR_RMV}✔️"
 
 ################################################################################
 #                                  Makefile  objs                              #
@@ -63,12 +85,12 @@ BLUE		:= \033[1;34m
 CYAN 		:= \033[1;36m
 RM		    := rm -f
 
+all:		${NAME}
+
 ${NAME}:	${OBJS} ${INCLUDES}
 			@echo "$(GREEN)Creating ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
 			ar -rcs ${NAME} ${OBJS} ${INCLUDES}
 			@echo "$(GREEN)$(NAME) created[0m ✔️"
-
-all:		${NAME}
 
 clean:
 			@ ${RM} *.o */*.o */*/*.o

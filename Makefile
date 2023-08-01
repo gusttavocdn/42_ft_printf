@@ -4,48 +4,30 @@
 
 NAME	:= libftprintf.a
 CC	:= cc
-FLAGS    := -Wall -Wextra -Werror -g
+FLAGS    := -Wall -Wextra -Werror
 LIB = ar -rcs
 
 ################################################################################
 #                             LIBFT                                            #
 ################################################################################
 
-LIBFT_PATH  :=  libft
-LIBFT 	:=  $(LIBFT_PATH)/libft.a
-
-${LIBFT}:
-	@echo "$(GREEN)Making LIBFT..."
-	@make -C $(LIBFT_PATH)
-	@make -C $(LIBFT_PATH) clean
+LIBFT 	:=  libft/libft.a
+MAKE_LIBFT = make -C libft
 
 ################################################################################
-#                           MANDATORY SRCS                                     #
+#                           MANDATORY SRCS   CONFIG                            #
 ################################################################################
 
 MANDATORY_DIR	:= 	mandatory/
 MANDATORY_SRC_DIR := $(MANDATORY_DIR)src/
 
-MANDATORY_FILES := 	ft_printf.c specifier_handler.c flags_handler.c \
-					flags_and_specifiers_verifiers.c apply_flags_and_specifier.c \
-					flags_initializer.c
+MANDATORY := $(addprefix $(MANDATORY_SRC_DIR), ft_printf.c specifier_handler.c)
 
-MANDATORY := $(addprefix $(MANDATORY_SRC_DIR), $(MANDATORY_FILES))
-
-MANDATORY_OBJS	:= $(MANDATORY:.c=.o)
+MANDATORY_OBJS	:= ${MANDATORY:$(MANDATORY_SRC_DIR)%.c=$(MANDATORY_SRC_DIR)%.o}
 MANDATORY_INCLUDES := $(MANDATORY_DIR)includes/
 
-$(MANDATORY_SRC_DIR)%.o: $(MANDATORY_SRC_DIR)%.c
-	$(CC) $(FLAGS) -c $< -o $@ -I $(MANDATORY_INCLUDES)
-
-${NAME}:	${MANDATORY_OBJS} ${LIBFT} ${MANDATORY_INCLUDES}
-			@echo "$(GREEN)Creating lib ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
-			@cp ${LIBFT} ${NAME}
-			${LIB} ${NAME} ${MANDATORY_OBJS} ${MANDATORY_INCLUDES}/ft_printf.h
-			@echo "$(GREEN)$(NAME) created[0m ✔️"
-
 ################################################################################
-#                           BONUS SRCS                                     	   #
+#                           BONUS SRCS CONFIG                              	   #
 ################################################################################
 
 BONUS_DIR	:= 	bonus/
@@ -70,6 +52,45 @@ BONUS_OBJS_3 := ${BONUS_FLAG_UTILS:$(BONUS_SRC_FLAGS_DIR)%.c=$(BONUS_OBJ_DIR)%.o
 BONUS_OBJS := ${BONUS_OBJS_1} ${BONUS_OBJS_2} ${BONUS_OBJS_3}
 BONUS_INCLUDES_DIR := $(BONUS_DIR)includes/
 
+################################################################################
+#                          DEBUG PROGRAM'S SRCS                                #
+################################################################################
+
+MAIN := main.c
+PROGRAM := ft_printf
+
+################################################################################
+#                           Makefile  objs                                     #
+################################################################################
+
+CLR_RMV		:= \033[0m
+RED		    := \033[1;31m
+GREEN		:= \033[1;32m
+YELLOW		:= \033[1;33m
+BLUE		:= \033[1;34m
+CYAN 		:= \033[1;36m
+RM		    := rm -rf
+
+all:		$(NAME)
+
+$(MANDATORY_SRC_DIR)%.o: $(MANDATORY_SRC_DIR)%.c
+	$(CC) $(FLAGS) -c $< -o $@ -I $(MANDATORY_INCLUDES)
+
+$(NAME):	$(LIBFT) $(MANDATORY_OBJS)
+			@echo "$(GREEN)Creating lib ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
+			@cp ${LIBFT} ${NAME}
+			${LIB} ${NAME} ${MANDATORY_OBJS} ${MANDATORY_INCLUDES}/ft_printf.h
+			@echo "$(GREEN)$(NAME) created[0m ✔️"
+
+$(LIBFT):
+	$(MAKE_LIBFT)
+	
+bonus:	${BONUS_OBJS} ${LIBFT} ${BONUS_INCLUDES}
+		@echo "$(GREEN)Creating lib ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
+		@cp ${LIBFT} ${NAME}
+		${LIB} ${NAME} ${BONUS_OBJS} ${BONUS_INCLUDES_DIR}ft_printf_bonus.h
+		@echo "$(GREEN)$(NAME) created[0m ✔️"
+
 $(BONUS_OBJ_DIR)%.o:	$(BONUS_SRC_DIR)%.c
 						@mkdir -p $(BONUS_OBJ_DIR)
 						$(CC) $(FLAGS) -c $< -o $@ -I $(BONUS_INCLUDES_DIR)
@@ -82,42 +103,13 @@ $(BONUS_OBJ_DIR)%.o:	$(BONUS_SRC_SPECIFIERS_DIR)%.c
 						@mkdir -p $(BONUS_OBJ_DIR)
 						$(CC) $(FLAGS) -c $< -o $@ -I $(BONUS_INCLUDES_DIR)
 
-bonus:	${BONUS_OBJS} ${LIBFT} ${BONUS_INCLUDES}
-		@echo "$(GREEN)Creating lib ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
-		@cp ${LIBFT} ${NAME}
-		${LIB} ${NAME} ${BONUS_OBJS} ${BONUS_INCLUDES_DIR}ft_printf_bonus.h
-		@echo "$(GREEN)$(NAME) created[0m ✔️"
-
-################################################################################
-#                          DEBUG PROGRAM'S SRCS                                #
-################################################################################
-
-MAIN := main.c
-PROGRAM := ft_printf
-
-################################################################################
-#                           Makefile  objs                                     #
-################################################################################
-
-
-CLR_RMV		:= \033[0m
-RED		    := \033[1;31m
-GREEN		:= \033[1;32m
-YELLOW		:= \033[1;33m
-BLUE		:= \033[1;34m
-CYAN 		:= \033[1;36m
-RM		    := rm -rf
-
-
-all:		${NAME}
-
 clean:
 			@${RM} ${BONUS_OBJ_DIR} ${MANDATORY_OBJS}
-			@make -C $(LIBFT_PATH) clean
+			@make -C libft clean
 			@echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)objs ✔️"
 
 fclean:		clean
-			@make -C $(LIBFT_PATH) fclean
+			@make -C libft fclean
 			@ ${RM} ${NAME}
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 

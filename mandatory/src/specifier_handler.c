@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:51:04 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/31 15:42:48 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/08/01 13:04:46 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	handle_just_specifier(char specifier, va_list args)
 static int	handle_p_specifier(va_list args)
 {
 	int				bytes_printed;
-	unsigned long	pointer;
+	size_t	pointer;
 
-	pointer = va_arg(args, unsigned long);
+	pointer = va_arg(args, size_t);
 	if (!pointer)
 		return ((int)ft_putstr_fd("(nil)", STDOUT_FILENO));
 	bytes_printed = 0;

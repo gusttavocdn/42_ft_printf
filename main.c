@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:49:13 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/31 16:32:44 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/08/01 12:19:02 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,20 @@ int main(void)
 	int ft_result;
 	int og_result;
 
-	og_result = printf("OG: %-s\n", "-");
-	ft_result = ft_printf("FT: %-s\n", "-");
+	og_result = printf("OG: %p %p\n", (void *)LONG_MIN, (void *)LONG_MAX);
+	ft_result = ft_printf("FT: %p %p\n", (void *)LONG_MIN, (void *)LONG_MAX);
 	printf("OG: %d\n", og_result);
 	printf("FT: %d\n", ft_result);
 
-	og_result = printf("OG: %-3s %-4s\n", " - ", "");
-	ft_result = ft_printf("FT: %-3s %-4s\n", " - ", "");
+	og_result = printf("OG: %p %p\n", (void *)ULONG_MAX, (void *)-ULONG_MAX);
+	ft_result = ft_printf("FT: %p %p\n", (void *)ULONG_MAX, (void *)-ULONG_MAX);
 	printf("OG: %d\n", og_result);
 	printf("FT: %d\n", ft_result);
+
+	// og_result = printf("OG: %-3s %-4s\n", " - ", "");
+	// ft_result = ft_printf("FT: %-3s %-4s\n", " - ", "");
+	// printf("OG: %d\n", og_result);
+	// printf("FT: %d\n", ft_result);
 
 //	og_result = printf("OG: %.1s %.2s %.3s %.4s\n", " - ", "", "4", "");
 //	ft_result = ft_printf("FT: %.1s %.2s %.3s %.4s\n", " - ", "", "4", "");
