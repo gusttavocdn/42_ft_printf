@@ -40,10 +40,10 @@ int	handle_just_specifier(char specifier, va_list args)
 
 static int	handle_p_specifier(va_list args)
 {
-	int				bytes_printed;
-	unsigned long	pointer;
+	int		bytes_printed;
+	size_t	pointer;
 
-	pointer = va_arg(args, unsigned int);
+	pointer = va_arg(args, size_t);
 	if (!pointer)
 		return ((int)ft_putstr_fd("(nil)", STDOUT_FILENO));
 	bytes_printed = 0;

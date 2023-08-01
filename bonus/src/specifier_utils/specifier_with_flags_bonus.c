@@ -49,11 +49,11 @@ static char	*handle_c_specifier(va_list args)
 
 static char	*handle_p_specifier(va_list args)
 {
-	char			*str;
-	char			*itoa_pointer;
-	unsigned long	pointer;
+	char	*str;
+	char	*itoa_pointer;
+	size_t	pointer;
 
-	pointer = va_arg(args, unsigned long);
+	pointer = va_arg(args, size_t);
 	if (pointer == 0)
 		return (ft_strdup("(nil)"));
 	itoa_pointer = ft_itoa_base_u(pointer, HEX_LOWER);

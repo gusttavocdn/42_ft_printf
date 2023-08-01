@@ -40,7 +40,7 @@ int	handle_just_specifier(char specifier, va_list args)
 
 static int	handle_p_specifier(va_list args)
 {
-	int				bytes_printed;
+	int		bytes_printed;
 	size_t	pointer;
 
 	pointer = va_arg(args, size_t);
