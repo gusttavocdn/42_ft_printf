@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 17:30:20 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/30 17:59:27 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/08/01 02:12:27 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,3 @@ char	*ft_itoa_base(long int number, char *base)
 	}
 	return (number_str);
 }
-
