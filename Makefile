@@ -12,7 +12,7 @@ LIB = ar -rcs
 ################################################################################
 
 LIBFT 	:=  libft/libft.a
-MAKE_LIBFT = make -C libft
+MAKE_LIBFT = @make -C libft --no-print-directory
 
 ################################################################################
 #                           MANDATORY SRCS   CONFIG                            #
@@ -71,25 +71,24 @@ BLUE		:= \033[1;34m
 CYAN 		:= \033[1;36m
 RM		    := rm -rf
 
+LOCAL_OBJS = ${MANDATORY_OBJS}
+
 all:		$(NAME)
 
 $(MANDATORY_SRC_DIR)%.o: $(MANDATORY_SRC_DIR)%.c
 	$(CC) $(FLAGS) -c $< -o $@ -I $(MANDATORY_INCLUDES)
 
-$(NAME):	$(LIBFT) $(MANDATORY_OBJS)
+$(NAME):	$(LIBFT) $(LOCAL_OBJS)
 			@echo "$(GREEN)Creating lib ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
 			@cp ${LIBFT} ${NAME}
-			${LIB} ${NAME} ${MANDATORY_OBJS} ${MANDATORY_INCLUDES}/ft_printf.h
+			${LIB} ${NAME} ${LOCAL_OBJS} 
 			@echo "$(GREEN)$(NAME) created[0m ✔️"
 
 $(LIBFT):
 	$(MAKE_LIBFT)
 	
-bonus:	${BONUS_OBJS} ${LIBFT} ${BONUS_INCLUDES}
-		@echo "$(GREEN)Creating lib ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
-		@cp ${LIBFT} ${NAME}
-		${LIB} ${NAME} ${BONUS_OBJS} ${BONUS_INCLUDES_DIR}ft_printf_bonus.h
-		@echo "$(GREEN)$(NAME) created[0m ✔️"
+bonus: ${BONUS_OBJS}
+	@make LOCAL_OBJS="${BONUS_OBJS}" --no-print-directory
 
 $(BONUS_OBJ_DIR)%.o:	$(BONUS_SRC_DIR)%.c
 						@mkdir -p $(BONUS_OBJ_DIR)
@@ -105,13 +104,13 @@ $(BONUS_OBJ_DIR)%.o:	$(BONUS_SRC_SPECIFIERS_DIR)%.c
 
 clean:
 			@${RM} ${BONUS_OBJ_DIR} ${MANDATORY_OBJS}
-			@make -C libft clean
+			@make -C libft clean --no-print-directory
 			@echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)objs ✔️"
 
 fclean:		clean
-			@make -C libft fclean
-			@ ${RM} ${NAME}
-			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
+			@make -C libft fclean --no-print-directory
+			@${RM} ${NAME}
+			@echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 
 re:			fclean all
 
