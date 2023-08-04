@@ -20,7 +20,7 @@ STDIO_LIB := ./src/stdio
 #                                 INCLUDES                                     #
 ################################################################################
 
-INCLUDES   := $(addprefix ./includes/, ft_char.h ft_math.h ft_mem.h ft_strings.h ft_stdio.h libft.h)
+HEADERS   := $(addprefix ./includes/, ft_char.h ft_math.h ft_mem.h ft_strings.h ft_stdio.h libft.h)
 
 ################################################################################
 #                                 PROGRAM'S SRCS                               #
@@ -47,7 +47,8 @@ SRCS        :=  $(CHAR_LIB_SRCS) $(MATH_LIB_SRCS) $(MEM_LIB_SRCS) $(STR_LIB_SRCS
 OBJS        := $(SRCS:.c=.o)
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o $@
+	@echo "$(CYAN)Compiling $(YELLOW)$(notdir $<)$(CLR_RMV)..."
+	@${CC} ${CFLAGS} -c $< -o $@ -I ./includes
 
 ################################################################################
 #                                  Makefile  objs                              #
@@ -60,13 +61,13 @@ GREEN		:= \033[1;32m
 YELLOW		:= \033[1;33m
 BLUE		:= \033[1;34m
 CYAN 		:= \033[1;36m
-RM		    := rm -f
+RM		    := rm -rf
 
 all:		${NAME}
 
-${NAME}:	${OBJS} ${INCLUDES}
+${NAME}:	${OBJS} ${HEADERS}
 			@echo "$(GREEN)Creating ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
-			@ar -rcs ${NAME} ${OBJS} ${INCLUDES}
+			@ar -rcs ${NAME} ${OBJS} ${HEADERS}
 			@echo "$(GREEN)$(NAME) created[0m ✔️"
 
 clean:
@@ -74,8 +75,8 @@ clean:
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)objs ✔️"
 
 fclean:		clean
-			@ ${RM} ${NAME}
-			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
+			@${RM} ${NAME}
+			@echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 
 re:			fclean all
 
