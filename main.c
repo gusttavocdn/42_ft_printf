@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash_bonus.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/31 14:58:09 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/31 16:43:37 by gusda-si         ###   ########.fr       */
+/*   Created: 2023/09/02 21:18:06 by gusda-si          #+#    #+#             */
+/*   Updated: 2023/09/02 23:00:33 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_printf_bonus.h"
+#include "mandatory/includes/ft_printf.h"
+#include <stdio.h>
 
-int	apply_hash(t_flags *flags, char *number)
+int	main(void)
 {
-	if (!ft_atoi_base(number, HEX_LOWER) && !ft_atoi_base(number, HEX_UPPER))
-		return (0);
-	if (flags->specifier == x)
-		return ((int)(ft_putstr_fd("0x", STDOUT_FILENO)));
-	else
-		return ((int)(ft_putstr_fd("0X", STDOUT_FILENO)));
+	int og, ft;
+
+	ft = ft_printf("Hello World!dsadasda\n");
+	og = printf("Hello World!dsadasda\n");
+
+	printf("OG: %d\nFT: %d\n", og, ft);
+	return 0;
 }

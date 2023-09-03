@@ -6,38 +6,28 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 06:30:04 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/18 17:45:59 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/09/02 22:00:19 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-static int		there_is_base_errors(char *base);
-static ssize_t	print(long int number, char *base, int base_len, int fd);
+static int	there_is_base_errors(char *base);
 
 ssize_t	ft_putnbr_base(long int nbr, char *base, int fd)
 {
-	int	base_len;
+	int		base_len;
+	char	*number;
+	ssize_t	bytes_written;
 
 	base_len = ft_strlen(base);
 	if (base_len <= 1 || there_is_base_errors(base))
 		return (0);
-	return (print(nbr, base, base_len, fd));
-}
-
-static ssize_t	print(long int number, char *base, int base_len, int fd)
-{
-	ssize_t	bytes_written;
-
-	bytes_written = 0;
-	if (number < 0)
-	{
-		bytes_written += ft_putchar_fd('-', fd);
-		number = -number;
-	}
-	if (number >= base_len)
-		bytes_written += print(number / base_len, base, base_len, fd);
-	bytes_written += ft_putchar_fd(base[number % base_len], fd);
+	number = ft_itoa_base(nbr, base);
+	if (!number)
+		return (ft_putstr_fd(NULL, fd));
+	bytes_written = ft_putstr_fd(number, fd);
+	free(number);
 	return (bytes_written);
 }
 

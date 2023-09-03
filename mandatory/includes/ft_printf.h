@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:32 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/31 15:42:53 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/09/02 22:47:08 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef enum e_specifiers
 	x = 'x',
 	X = 'X',
 	d = 'd',
+	o = 'o',
+	b = 'b',
 	percent = '%',
 }					t_specifiers;
 
@@ -48,21 +50,12 @@ typedef struct s_flags
 	int				precision;
 }					t_flags;
 
-// Function declarations
-/**
- * @brief This function can write a formatted string to the standard output.
- * For more info consult the manual (man 3 printf)
-*/
-int					ft_printf(const char *format, ...);
-int					handle_just_specifier(char specifier, va_list args);
-int					handle_flags(const char *str, va_list args,
-						int *walked_bytes);
-t_bool				is_specifier(char flag);
-t_bool				is_flag(char flag);
-int					apply_prefix(t_flags *flags, char *format);
-int					apply_width(t_flags *flags, char *number,
-						char padding_char);
-char				*get_argument(t_specifiers specifier, va_list args);
-void				init_flags(t_flags *flags);
+typedef struct s_fmt_buffer
+{
+	char	*data;
+	int		index;
+}				t_fmt_buffer;
+
+int ft_printf(const char *str, ...);
 
 #endif // FT_PRINTF_H
