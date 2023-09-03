@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 12:46:09 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/09/03 14:04:40 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/09/03 17:24:15 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	apply_int(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	int_str = ft_itoa(number);
 	if (flags->has_plus && number >= 0)
 		plus(buffer, flags);
+	if (flags->has_space && number >= 0)
+		space(buffer, flags);
 	buffer->index += ft_strlen(int_str);
 	ft_strlcat(buffer->data, int_str, BUFFER_SIZE);
 	free(int_str);
@@ -63,7 +65,7 @@ void	apply_hex(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	else
 		hex_str = ft_itoa_base_u(number, HEX_UPPER);
 	if (flags->has_hash)
-		hash(buffer, flags, args);
+		hash(buffer, flags);
 	buffer->index += ft_strlen(hex_str);
 	ft_strlcat(buffer->data, hex_str, BUFFER_SIZE);
 	free(hex_str);

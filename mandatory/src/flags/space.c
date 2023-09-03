@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   space.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 21:18:06 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/09/03 17:25:01 by gusda-si         ###   ########.fr       */
+/*   Created: 2023/09/03 17:03:50 by gusda-si          #+#    #+#             */
+/*   Updated: 2023/09/03 17:23:44 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mandatory/includes/ft_printf.h"
-#include <limits.h>
-#include <stdio.h>
+#include "../../includes/ft_printf.h"
 
-int	main(void)
+void	space(t_fmt_buffer *buffer, t_flags *flags)
 {
-	int	og;
-	int	ft;
-
-	og = printf("dada %+ d\n", 100);
-	ft = ft_printf("dada %+ d\n", 100);
-	// printf("OG: %d\nFT: %d\n", og, ft);
-	return (0);
+	if (flags->specifier == d || flags->specifier == i)
+	{
+		if (flags->has_plus)
+			return ;
+		if (flags->has_minus)
+			return ;
+		if (flags->has_zero)
+			return ;
+		if (flags->has_hash)
+			return ;
+		if (flags->width > 0)
+			return ;
+		buffer->data[buffer->index++] = ' ';
+	}
 }
