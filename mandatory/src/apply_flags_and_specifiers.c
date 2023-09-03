@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 12:46:09 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/09/03 13:51:27 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/09/03 14:04:40 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,27 @@ void	apply_flags_and_specifiers(t_fmt_buffer *buffer,
 {
 	if (flags->specifier == x || flags->specifier == X)
 		apply_hex(buffer, flags, args);
-	if (flags->specifier == o)
+	else if (flags->specifier == o)
 		apply_octal(buffer, flags, args);
+	else if (flags->specifier == d || flags->specifier == i)
+		apply_int(buffer, flags, args);
 }
 
-void apply_octal(t_fmt_buffer *buffer, t_flags *flags, va_list args)
+void	apply_int(t_fmt_buffer *buffer, t_flags *flags, va_list args)
+{
+	char	*int_str;
+	int		number;
+
+	number = va_arg(args, int);
+	int_str = ft_itoa(number);
+	if (flags->has_plus && number >= 0)
+		plus(buffer, flags);
+	buffer->index += ft_strlen(int_str);
+	ft_strlcat(buffer->data, int_str, BUFFER_SIZE);
+	free(int_str);
+}
+
+void	apply_octal(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 {
 	char			*octal_str;
 	unsigned int	number;
@@ -30,7 +46,7 @@ void apply_octal(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	number = va_arg(args, size_t);
 	octal_str = ft_itoa_base_u(number, OCTAL);
 	if (flags->has_hash)
-		hash(buffer, flags, args);
+		hash(buffer, flags);
 	buffer->index += ft_strlen(octal_str);
 	ft_strlcat(buffer->data, octal_str, BUFFER_SIZE);
 	free(octal_str);

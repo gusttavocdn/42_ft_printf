@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:32 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/09/03 13:49:34 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/09/03 14:05:04 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void				apply_hex(t_fmt_buffer *buffer, t_flags *flags,
 						va_list args);
 void				apply_octal(t_fmt_buffer *buffer, t_flags *flags,
 						va_list args);
-void				hash(t_fmt_buffer *buffer, t_flags *flags, va_list args);
-
+void				hash(t_fmt_buffer *buffer, t_flags *flags);
+void				plus(t_fmt_buffer *buffer, t_flags *flags);
+void				apply_int(t_fmt_buffer *buffer, t_flags *flags,
+						va_list args);
 #endif // FT_PRINTF_H
