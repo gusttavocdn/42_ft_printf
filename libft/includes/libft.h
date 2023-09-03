@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 23:48:40 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/23 21:49:54 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/09/03 13:50:51 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define HEX_UPPER "0123456789ABCDEF"
 # define HEX_SIZE 16
 # define DECIMAL "0123456789"
+# define OCTAL "01234567"
 
 // Types
 
@@ -66,9 +67,11 @@ typedef int32_t		t_4byte_i;
 typedef int64_t		t_8byte_i;
 
 // Enum to representing boolean values
+# ifndef T_BOOL
 typedef enum e_bool
 {
-	my_false,
-	my_true
+	false,
+	true
 }					t_bool;
+# endif
 #endif

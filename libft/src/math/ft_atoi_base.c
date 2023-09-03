@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 17:13:17 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/18 17:53:48 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/09/03 13:08:18 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ static t_bool	there_is_base_errors(char *base)
 	while (i < base_len)
 	{
 		if (ft_isspace(base[i]))
-			return (my_true);
+			return (true);
 		if (base[i] == '+' || base[i] == '-')
-			return (my_true);
+			return (true);
 		j = i + 1;
 		while (j < base_len)
 		{
@@ -69,7 +69,7 @@ static t_bool	there_is_base_errors(char *base)
 		}
 		i++;
 	}
-	return (my_false);
+	return (false);
 }
 
 static int	find_digit_on_base(char digit, char *base)

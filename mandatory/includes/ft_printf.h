@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:32 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/09/02 22:47:08 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/09/03 13:49:34 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef enum e_specifiers
 
 // Macro declarations
 # define FLAGS "-0.#+ "
-# define SPECIFIERS "cspdiuxX%"
+# define SPECIFIERS "cspdiuxXob%"
 
 // Struct declarations
 typedef struct s_flags
@@ -52,10 +52,23 @@ typedef struct s_flags
 
 typedef struct s_fmt_buffer
 {
-	char	*data;
-	int		index;
-}				t_fmt_buffer;
+	char			*data;
+	int				index;
+}					t_fmt_buffer;
 
-int ft_printf(const char *str, ...);
+int					ft_printf(const char *str, ...);
+int	handle_flags_and_specifiers(t_fmt_buffer *buffer,
+								const char *str,
+								va_list args);
+t_bool				is_specifier(char specifier);
+t_bool				is_flag(char flag);
+void	apply_flags_and_specifiers(t_fmt_buffer *buffer,
+								t_flags *flags,
+								va_list args);
+void				apply_hex(t_fmt_buffer *buffer, t_flags *flags,
+						va_list args);
+void				apply_octal(t_fmt_buffer *buffer, t_flags *flags,
+						va_list args);
+void				hash(t_fmt_buffer *buffer, t_flags *flags, va_list args);
 
 #endif // FT_PRINTF_H
