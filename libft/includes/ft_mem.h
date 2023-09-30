@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 11:33:54 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/18 11:59:30 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/09/30 01:07:45 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,12 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
  * @param size Size of each memory area
  */
 void	ft_swap(void *a, void *b, size_t size);
+
+/**
+ * @brief This function swaps two pointers and free the old one
+ * @param old_ptr Pointer to be swapped
+ * @param new_ptr Pointer to swap with
+ */
+void	ft_swap_ptrs(void **old_ptr, void *new_ptr);
 
 #endif // FT_MEM_H

@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*   minus.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/18 11:26:03 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/09/30 01:11:48 by gusda-si         ###   ########.fr       */
+/*   Created: 2023/09/30 00:45:11 by gusda-si          #+#    #+#             */
+/*   Updated: 2023/09/30 01:11:44 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../includes/ft_printf.h"
 
-void	ft_swap(void *a, void *b, size_t size)
+void minus(t_fmt_buffer *buffer, t_flags *flags, int number_len)
 {
-	void	*temp;
+	int width;
 
-	temp = malloc(size);
-	ft_memcpy(temp, a, size);
-	ft_memcpy(a, b, size);
-	ft_memcpy(b, temp, size);
-	free(temp);
+	width = flags->width - number_len;
+	if (flags->precision < 0)
+	{
+		while (width-- > 0)
+			buffer->data[buffer->index++] = ' ';
+	}
 }

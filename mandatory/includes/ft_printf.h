@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:32 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/09/03 17:35:31 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/09/30 01:11:42 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ void				hash(t_fmt_buffer *buffer, t_flags *flags);
 void				plus(t_fmt_buffer *buffer, t_flags *flags);
 void				space(t_fmt_buffer *buffer, t_flags *flags);
 void				zero(t_fmt_buffer *buffer, t_flags *flags, int number_len);
+void				minus(t_fmt_buffer *buffer, t_flags *flags, int number_len);
 
 #endif // FT_PRINTF_H

@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*   ft_swap_ptrs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/18 11:26:03 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/09/30 01:11:48 by gusda-si         ###   ########.fr       */
+/*   Created: 2023/09/30 00:58:45 by gusda-si          #+#    #+#             */
+/*   Updated: 2023/09/30 01:07:43 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-void	ft_swap(void *a, void *b, size_t size)
+void	ft_swap_ptrs(void **old_ptr, void *new_ptr)
 {
 	void	*temp;
 
-	temp = malloc(size);
-	ft_memcpy(temp, a, size);
-	ft_memcpy(a, b, size);
-	ft_memcpy(b, temp, size);
+	temp = *old_ptr;
+	*old_ptr = new_ptr;
 	free(temp);
+	temp = NULL;
 }
