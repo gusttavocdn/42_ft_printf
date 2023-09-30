@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 12:46:09 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/09/03 17:24:15 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/09/03 17:40:10 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	apply_int(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 		plus(buffer, flags);
 	if (flags->has_space && number >= 0)
 		space(buffer, flags);
+	if (flags->has_zero)
+		zero(buffer, flags, ft_strlen(int_str));
 	buffer->index += ft_strlen(int_str);
 	ft_strlcat(buffer->data, int_str, BUFFER_SIZE);
 	free(int_str);

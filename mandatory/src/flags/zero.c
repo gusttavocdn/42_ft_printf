@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   zero.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 21:18:06 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/09/03 17:41:45 by gusda-si         ###   ########.fr       */
+/*   Created: 2023/09/03 17:28:06 by gusda-si          #+#    #+#             */
+/*   Updated: 2023/09/03 17:41:49 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mandatory/includes/ft_printf.h"
-#include <limits.h>
-#include <stdio.h>
+#include "../../includes/ft_printf.h"
 
-int	main(void)
+void	zero(t_fmt_buffer *buffer, t_flags *flags, int number_len)
 {
-	int	og;
-	int	ft;
+	int	width;
 
-	og = printf("%010d\n", 100);
-	ft = ft_printf("%010d\n", 100);
-	// printf("OG: %d\nFT: %d\n", og, ft);
-	return (0);
+	width = flags->width - number_len;
+	if (flags->precision < 0)
+	{
+		while (width-- > 0)
+			buffer->data[buffer->index++] = '0';
+	}
 }
