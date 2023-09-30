@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 12:46:09 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/09/30 01:12:27 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/09/30 01:28:14 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,21 @@ void	apply_flags_and_specifiers(t_fmt_buffer *buffer,
 		apply_octal(buffer, flags, args);
 	else if (flags->specifier == d || flags->specifier == i)
 		apply_int(buffer, flags, args);
+	else if (flags->specifier == s)
+		apply_string(buffer, flags, args);
+}
+
+void apply_string(t_fmt_buffer *buffer, t_flags *flags, va_list args)
+{
+	char	*string;
+	int		len;
+
+	string = va_arg(args, char *);
+	len = ft_strlen(string);
+	buffer->index += len;
+	ft_strlcat(buffer->data, string, BUFFER_SIZE);
+	if (flags->has_minus)
+		minus(buffer, flags, len);
 }
 
 void	apply_int(t_fmt_buffer *buffer, t_flags *flags, va_list args)
