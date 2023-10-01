@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 12:46:09 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/10/01 13:27:06 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 13:41:44 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,39 @@ void	apply_flags_and_specifiers(t_fmt_buffer *buffer,
 		apply_int(buffer, flags, args);
 	else if (flags->specifier == s)
 		apply_string(buffer, flags, args);
+	else if (flags->specifier == p)
+		apply_pointer(buffer, flags, args);
+	else if (flags->specifier == c)
+		apply_char(buffer, flags, args);
+	// else if (flags->specifier == u)
+	// 	apply_unsigned_int(buffer, flags, args);
+	// else if (flags->specifier == percent)
+	// 	apply_percent(buffer, flags);
+}
+void apply_char(t_fmt_buffer *buffer, t_flags *flags, va_list args)
+{
+	char	c;
+
+	c = va_arg(args, int);
+	buffer->data[buffer->index++] = c;
+	if (flags->has_minus)
+		minus(buffer, flags, 1);
+}
+
+void apply_pointer(t_fmt_buffer *buffer, t_flags *flags, va_list args)
+{
+	char	*pointer_str;
+	size_t	pointer;
+
+	pointer = va_arg(args, size_t);
+	pointer_str = ft_itoa_base_u(pointer, HEX_LOWER);
+	buffer->data[buffer->index++] = '0';
+	buffer->data[buffer->index++] = 'x';
+	buffer->index += ft_strlen(pointer_str);
+	ft_strlcat(buffer->data, pointer_str, BUFFER_SIZE);
+	if (flags->has_minus)
+		minus(buffer, flags, ft_strlen(pointer_str));
+	free(pointer_str);
 }
 
 void apply_string(t_fmt_buffer *buffer, t_flags *flags, va_list args)

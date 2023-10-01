@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 00:45:11 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/10/01 13:26:53 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 13:30:53 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	minus(t_fmt_buffer *buffer, t_flags *flags, int len)
 			buffer->data[buffer->index++] = ' ';
 	}
 }
+
 void	minus_string(t_fmt_buffer *buffer, t_flags *flags)
 {
 	int	width;

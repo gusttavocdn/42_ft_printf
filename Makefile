@@ -79,9 +79,4 @@ run: 		all
 			@${CC} ${CFLAGS} -o ft_printf ${MAIN} $(MANDATORY_DIR)src/*.c libft/src/*/*.c
 			@./${PROGRAM}
 
-run_b: 		all
-			@echo "$(GREEN)Running...\n$(CLR_RMV)"
-			@${CC} ${CFLAGS} -g -o ft_printf ${MAIN} $(BONUS_DIR)src/*.c  $(BONUS_DIR)src/*/*.c libft/src/*/*.c
-			@./${PROGRAM}
-
-.PHONY:		all clean fclean re run run_b
+.PHONY:		all clean fclean re run
