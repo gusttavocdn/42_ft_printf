@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 19:00:04 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/29 22:34:33 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 17:22:21 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,14 @@ int		ft_abs(int number);
  * @param base the base
  * @return A pointer allocated with malloc to a string
  */
-char	*ft_itoa_base_u(unsigned long number, char *base);
+char	*ft_itoa_base_u(unsigned int number, char *base);
+
+/**
+ * @brief This function converts a number in a string
+ * @param number The number to be converted.
+ * @param base the base
+ * @return A pointer allocated with malloc to a string
+ */
+char	*ft_itoa_base_ul(unsigned long number, char *base);
 
 #endif // FT_MATH_H

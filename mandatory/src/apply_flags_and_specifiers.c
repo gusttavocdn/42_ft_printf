@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 12:46:09 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/10/01 17:11:27 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 17:23:23 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	apply_unsigned_int(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	int		len;
 
 	number = va_arg(args, unsigned int);
-	unsigned_str = ft_itoa(number);
+	unsigned_str = ft_itoa_base_u(number, DECIMAL);
 	len = ft_strlen(unsigned_str);
 	if (flags->has_plus && number >= 0)
 		plus(buffer);
@@ -82,7 +82,13 @@ void	apply_pointer(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	size_t	pointer;
 
 	pointer = va_arg(args, size_t);
-	pointer_str = ft_itoa_base_u(pointer, HEX_LOWER);
+	if (!pointer)
+	{
+		buffer->index += 5;
+		ft_strlcat(buffer->data, "(nil)", BUFFER_SIZE);
+		return;
+	}
+	pointer_str = ft_itoa_base_ul(pointer, HEX_LOWER);
 	buffer->data[buffer->index++] = '0';
 	buffer->data[buffer->index++] = 'x';
 	buffer->index += ft_strlen(pointer_str);
