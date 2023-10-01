@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 12:46:09 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/10/01 14:51:01 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 17:11:27 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	apply_char(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	char	c;
 
 	c = va_arg(args, int);
-	buffer->data[buffer->index++] = c;
+	buffer->data[buffer->index] = c;
+	buffer->index++;
 	if (flags->has_minus)
 		minus(buffer, flags, 1);
 }
@@ -97,11 +98,15 @@ void	apply_string(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	int		len;
 
 	string = va_arg(args, char *);
+	if (!string)
+		string = "(null)";
 	len = ft_strlen(string);
-	if (flags->precision > len)
-		buffer->index += len;
-	else
+	if (len <= 0)
+		return;
+	buffer->index += len;
+	if (flags->precision != -1 && flags->precision < len)
 		buffer->index += flags->precision;
+
 	ft_strncat(buffer->data, string, (flags->precision));
 	if (flags->has_minus)
 		minus_string(buffer, flags);

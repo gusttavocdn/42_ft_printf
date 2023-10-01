@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:32 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/10/01 14:50:43 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 15:38:01 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_fmt_buffer
 {
 	char			*data;
 	int				index;
+	int				position;
 }					t_fmt_buffer;
 
 int					ft_printf(const char *str, ...);

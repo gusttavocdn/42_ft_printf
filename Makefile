@@ -80,7 +80,7 @@ re:			fclean all
 
 run: 		all
 			@echo "$(GREEN)Running...\n$(CLR_RMV)"
-			@${CC} ${CFLAGS} -o ft_printf ${MAIN} $(MANDATORY_DIR)src/*.c libft/src/*/*.c
-			@./${PROGRAM}
+			@${CC} ${CFLAGS} -o ft_printf ${MAIN} $(MANDATORY_DIR)src/*.c $(MANDATORY_DIR)src/flags/*.c  libft/src/*/*.c
+			@#./${PROGRAM}
 
 .PHONY:		all clean fclean re run
