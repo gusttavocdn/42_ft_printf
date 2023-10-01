@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 12:46:09 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/09/30 01:28:14 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 13:27:06 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,13 @@ void apply_string(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 
 	string = va_arg(args, char *);
 	len = ft_strlen(string);
-	buffer->index += len;
-	ft_strlcat(buffer->data, string, BUFFER_SIZE);
+	if (flags->precision > len)
+		buffer->index += len;
+	else
+		buffer->index += flags->precision;
+	ft_strncat(buffer->data, string, (flags->precision));
 	if (flags->has_minus)
-		minus(buffer, flags, len);
+		minus_string(buffer, flags);
 }
 
 void	apply_int(t_fmt_buffer *buffer, t_flags *flags, va_list args)

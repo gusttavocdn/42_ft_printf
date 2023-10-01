@@ -37,7 +37,10 @@ MEM_LIB_SRCS := $(addprefix $(MEM_LIB)/, ft_bzero.c ft_calloc.c ft_memcpy.c ft_m
 										ft_memcmp.c ft_memmove.c ft_memset.c ft_swap.c \
 										ft_swap_ptrs.c)
 
-STR_LIB_SRCS := $(addprefix $(STR_LIB)/, ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c)
+STR_LIB_SRCS := $(addprefix $(STR_LIB)/, ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c \ 
+										ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c \
+										ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c
+										ft_strncpy.c)
 
 STDIO_LIB_SRCS := $(addprefix $(STDIO_LIB)/, ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c \
 											ft_putnbr_base_fd.c ft_gnl.c ft_putnbr_unsigned_fd.c \

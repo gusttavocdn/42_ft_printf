@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 21:31:52 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/07/23 21:31:53 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 13:26:46 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,5 +167,14 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *));
  * NULL if the allocation fails.
  */
 char	**ft_split(char const *s, char c);
+
+/**
+ * @brief This function copies the string "src" to "dst"
+ * until n bytes;
+ * @param dest The destination buffer
+ * @param src The source string
+ * @param nb The number of bytes to copy
+*/
+char	*ft_strncat(char *dest, char *src, unsigned int nb);
 
 #endif // FT_STRINGS_H

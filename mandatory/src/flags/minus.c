@@ -6,15 +6,15 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 00:45:11 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/09/30 01:19:49 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 13:26:53 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-void minus(t_fmt_buffer *buffer, t_flags *flags, int len)
+void	minus(t_fmt_buffer *buffer, t_flags *flags, int len)
 {
-	int width;
+	int	width;
 
 	width = flags->width - len;
 	if (flags->precision < 0)
@@ -22,4 +22,12 @@ void minus(t_fmt_buffer *buffer, t_flags *flags, int len)
 		while (width-- > 0)
 			buffer->data[buffer->index++] = ' ';
 	}
+}
+void	minus_string(t_fmt_buffer *buffer, t_flags *flags)
+{
+	int	width;
+
+	width = flags->width - flags->precision;
+	while (width-- > 0)
+		buffer->data[buffer->index++] = ' ';
 }
