@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 12:46:09 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/10/01 17:35:22 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 18:40:36 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	apply_pointer(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	{
 		buffer->index += 5;
 		ft_strlcat(buffer->data, "(nil)", BUFFER_SIZE);
-		return;
+		return ;
 	}
 	pointer_str = ft_itoa_base_ul(pointer, HEX_LOWER);
 	buffer->data[buffer->index++] = '0';
@@ -106,18 +106,27 @@ void	apply_string(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	int		len;
 
 	string = va_arg(args, char *);
+	if (!string && (flags->precision > -1 && flags->precision < 6))
+		return ;
 	if (!string)
 		string = "(null)";
 	len = ft_strlen(string);
 	if (len <= 0)
-		return;
-	buffer->index += len;
+		return ;
+	if (!flags->has_minus)
+	{
+		if (flags->precision != -1 && flags->precision < len)
+			width(buffer, flags->width - flags->precision, ' ');
+		else
+			width(buffer, flags->width - len, ' ');
+	}
 	if (flags->precision != -1 && flags->precision < len)
 		buffer->index += flags->precision;
-
+	else
+		buffer->index += len;
 	ft_strncat(buffer->data, string, (flags->precision));
 	if (flags->has_minus)
-		minus_string(buffer, flags);
+		minus_string(buffer, flags, len);
 }
 
 void	apply_int(t_fmt_buffer *buffer, t_flags *flags, va_list args)

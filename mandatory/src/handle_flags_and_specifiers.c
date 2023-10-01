@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 23:04:17 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/10/01 15:02:42 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 18:39:33 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	handle_flags_and_specifiers(t_fmt_buffer *buffer, const char *str,
 	t_flags	flags;
 	int		flags_len;
 
-	flags = (t_flags){.has_hash = my_false, .has_zero = my_false, .has_space = my_false,
-		.has_plus = my_false, .has_minus = my_false, .specifier = 0, .width = 0,
-		.precision = -1};
+	flags = (t_flags){.has_hash = my_false, .has_zero = my_false,
+		.has_space = my_false, .has_plus = my_false, .has_minus = my_false,
+		.specifier = 0, .width = 0, .precision = -1};
 	flags_len = verify_what_flags_i_have(&flags, str);
 	apply_flags_and_specifiers(buffer, &flags, args);
 	return (flags_len);
@@ -61,9 +61,12 @@ static void	verify_precision(t_flags *flags, const char *str)
 {
 	char	*precision;
 
-	precision = ft_strchr(str, '.');
-	if (precision)
-		flags->precision = ft_atoi(precision + 1);
+	if (*str != '\0' && !is_specifier(*str))
+	{
+		precision = ft_strchr(str, '.');
+		if (precision)
+			flags->precision = ft_atoi(precision + 1);
+	}
 }
 
 static void	verify_width(t_flags *flags, const char *str)
