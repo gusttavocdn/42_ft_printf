@@ -65,6 +65,8 @@ $(NAME):	$(LIBFT) $(LOCAL_OBJS)
 
 $(LIBFT):
 	$(MAKE_LIBFT)
+
+bonus:		$(NAME)
 	
 clean:
 			@${RM} ${BONUS_OBJ_DIR} ${MANDATORY_OBJS}

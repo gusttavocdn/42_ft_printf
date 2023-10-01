@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 12:46:09 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/10/01 17:23:23 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 17:35:22 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	apply_char(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	char	c;
 
 	c = va_arg(args, int);
+	if (!flags->has_minus)
+		width(buffer, flags->width - 1, ' ');
 	buffer->data[buffer->index] = c;
 	buffer->index++;
 	if (flags->has_minus)

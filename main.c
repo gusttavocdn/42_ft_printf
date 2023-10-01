@@ -20,7 +20,7 @@ int	main(void)
 
 	int og, ft;
 	// null_str = NULL;
-	og = printf("The NULL macro represents the %p address", ((void*)0));;
+	og = printf("The NULL macro represents the %-10c address", ((void*)0));;
 	printf("\n");
 	ft = ft_printf("The NULL macro represents the %p address", ((void*)0));
 	printf("\n\nog: %d\nft: %d\n", og, ft);
