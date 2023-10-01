@@ -6,13 +6,13 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:54:43 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/09/03 14:04:52 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 14:50:13 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-void	plus(t_fmt_buffer *buffer, t_flags *flags)
+void	plus(t_fmt_buffer *buffer)
 {
 	buffer->data[buffer->index++] = '+';
 }

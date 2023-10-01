@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 23:17:08 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/09/02 23:20:02 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 14:58:27 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_bool	is_specifier(char specifier)
 	while (SPECIFIERS[counter] != '\0')
 	{
 		if (SPECIFIERS[counter] == specifier)
-			return (true);
+			return (my_true);
 		counter++;
 	}
-	return (false);
+	return (my_false);
 }

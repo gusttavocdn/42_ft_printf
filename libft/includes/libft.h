@@ -70,8 +70,8 @@ typedef int64_t		t_8byte_i;
 # ifndef T_BOOL
 typedef enum e_bool
 {
-	false,
-	true
+	my_false,
+	my_true
 }					t_bool;
 # endif
 #endif

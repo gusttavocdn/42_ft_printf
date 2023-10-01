@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 12:46:09 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/10/01 14:38:14 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 14:51:01 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	apply_unsigned_int(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	unsigned_str = ft_itoa(number);
 	len = ft_strlen(unsigned_str);
 	if (flags->has_plus && number >= 0)
-		plus(buffer, flags);
+		plus(buffer);
 	width(buffer, flags->precision - len, '0');
 	if (flags->has_space && number >= 0)
 		space(buffer, flags);
@@ -117,7 +117,7 @@ void	apply_int(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	int_str = ft_itoa(number);
 	len = ft_strlen(int_str);
 	if (flags->has_plus && number >= 0)
-		plus(buffer, flags);
+		plus(buffer);
 	width(buffer, flags->precision - len, '0');
 	if (flags->has_space && number >= 0)
 		space(buffer, flags);

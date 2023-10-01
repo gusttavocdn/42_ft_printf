@@ -21,7 +21,11 @@ MAKE_LIBFT = @make -C libft --no-print-directory
 MANDATORY_DIR	:= 	mandatory/
 MANDATORY_SRC_DIR := $(MANDATORY_DIR)src/
 
-MANDATORY := $(addprefix $(MANDATORY_SRC_DIR), ft_printf.c specifier_handler.c)
+MANDATORY := $(addprefix $(MANDATORY_SRC_DIR), apply_flags_and_specifiers.c ft_printf.c is_flag.c \
+												is_specifier.c handle_flags_and_specifiers.c)
+
+MANDATORY += $(addprefix $(MANDATORY_SRC_DIR)flags/, hash.c minus.c plus.c space.c \
+													width.c zero.c)
 
 MANDATORY_OBJS	:= ${MANDATORY:$(MANDATORY_SRC_DIR)%.c=$(MANDATORY_SRC_DIR)%.o}
 MANDATORY_INCLUDES := $(MANDATORY_DIR)includes/
