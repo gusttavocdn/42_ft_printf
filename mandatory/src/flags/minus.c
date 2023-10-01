@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 00:45:11 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/10/01 13:30:53 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 14:16:27 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ void	minus(t_fmt_buffer *buffer, t_flags *flags, int len)
 }
 
 void	minus_string(t_fmt_buffer *buffer, t_flags *flags)
+{
+	int	width;
+
+	width = flags->width - flags->precision;
+	while (width-- > 0)
+		buffer->data[buffer->index++] = ' ';
+}
+
+void	minus_number(t_fmt_buffer *buffer, t_flags *flags, int len)
 {
 	int	width;
 

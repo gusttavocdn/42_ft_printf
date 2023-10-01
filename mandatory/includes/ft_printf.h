@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:32 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/10/01 13:40:09 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 14:06:42 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ void				apply_string(t_fmt_buffer *buffer, t_flags *flags,
 void				apply_pointer(t_fmt_buffer *buffer, t_flags *flags,
 						va_list args);
 void				apply_char(t_fmt_buffer *buffer, t_flags *flags,
+						va_list args);
+void				apply_percent(t_fmt_buffer *buffer, t_flags *flags);
+void				apply_unsigned_int(t_fmt_buffer *buffer, t_flags *flags,
 						va_list args);
 void				hash(t_fmt_buffer *buffer, t_flags *flags);
 void				plus(t_fmt_buffer *buffer, t_flags *flags);

@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 12:46:09 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/10/01 13:41:44 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 14:38:14 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,44 @@ void	apply_flags_and_specifiers(t_fmt_buffer *buffer,
 		apply_pointer(buffer, flags, args);
 	else if (flags->specifier == c)
 		apply_char(buffer, flags, args);
-	// else if (flags->specifier == u)
-	// 	apply_unsigned_int(buffer, flags, args);
-	// else if (flags->specifier == percent)
-	// 	apply_percent(buffer, flags);
+	else if (flags->specifier == u)
+		apply_unsigned_int(buffer, flags, args);
+	else if (flags->specifier == percent)
+		apply_percent(buffer, flags);
 }
-void apply_char(t_fmt_buffer *buffer, t_flags *flags, va_list args)
+
+void	apply_percent(t_fmt_buffer *buffer, t_flags *flags)
+{
+	buffer->data[buffer->index++] = percent;
+	if (flags->has_minus)
+		minus(buffer, flags, 1);
+}
+
+void	apply_unsigned_int(t_fmt_buffer *buffer, t_flags *flags, va_list args)
+{
+	char	*unsigned_str;
+	int		number;
+	int		len;
+
+	number = va_arg(args, unsigned int);
+	unsigned_str = ft_itoa(number);
+	len = ft_strlen(unsigned_str);
+	if (flags->has_plus && number >= 0)
+		plus(buffer, flags);
+	width(buffer, flags->precision - len, '0');
+	if (flags->has_space && number >= 0)
+		space(buffer, flags);
+	if (flags->has_zero && !flags->has_minus) // "-" overrides "0"
+		zero(buffer, flags, ft_strlen(unsigned_str));
+	buffer->index += ft_strlen(unsigned_str);
+	ft_strlcat(buffer->data, unsigned_str, BUFFER_SIZE);
+	if (flags->has_minus)
+		minus(buffer, flags, ft_strlen(unsigned_str));
+	width(buffer, flags->width - flags->precision - 1, ' ');
+	free(unsigned_str);
+}
+
+void	apply_char(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 {
 	char	c;
 
@@ -43,7 +75,7 @@ void apply_char(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 		minus(buffer, flags, 1);
 }
 
-void apply_pointer(t_fmt_buffer *buffer, t_flags *flags, va_list args)
+void	apply_pointer(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 {
 	char	*pointer_str;
 	size_t	pointer;
@@ -59,7 +91,7 @@ void apply_pointer(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	free(pointer_str);
 }
 
-void apply_string(t_fmt_buffer *buffer, t_flags *flags, va_list args)
+void	apply_string(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 {
 	char	*string;
 	int		len;
@@ -79,11 +111,14 @@ void	apply_int(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 {
 	char	*int_str;
 	int		number;
+	int		len;
 
 	number = va_arg(args, int);
 	int_str = ft_itoa(number);
+	len = ft_strlen(int_str);
 	if (flags->has_plus && number >= 0)
 		plus(buffer, flags);
+	width(buffer, flags->precision - len, '0');
 	if (flags->has_space && number >= 0)
 		space(buffer, flags);
 	if (flags->has_zero && !flags->has_minus) // "-" overrides "0"
@@ -92,6 +127,7 @@ void	apply_int(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	ft_strlcat(buffer->data, int_str, BUFFER_SIZE);
 	if (flags->has_minus)
 		minus(buffer, flags, ft_strlen(int_str));
+	width(buffer, flags->width - flags->precision - 1, ' ');
 	free(int_str);
 }
 
