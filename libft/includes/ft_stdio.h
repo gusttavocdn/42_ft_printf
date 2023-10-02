@@ -28,24 +28,24 @@
 ssize_t	ft_putchar_fd(char c, int fd);
 
 /**
- * @brief Outputs the string "s" to the given file descriptor
+ * @brief Outputs the fmt_str "s" to the given file descriptor
  *
- * @param s The string to output
+ * @param s The fmt_str to output
  * @param fd The file descriptor on which to write
  */
 ssize_t	ft_putstr_fd(char *s, int fd);
 
 /**
- * @brief Outputs the string "s" to the given file descriptor
+ * @brief Outputs the fmt_str "s" to the given file descriptor
  * followed by a newline.
  *
- * @param s The string to output
+ * @param s The fmt_str to output
  * @param fd The file descriptor on which to write
  */
 ssize_t	ft_putendl_fd(char *s, int fd);
 
 /**
- * @brief Outputs the integer "n" to the given fd
+ * @brief Outputs the fmt_int "n" to the given fd
  *
  * @param n The number to output
  * @param fd The file descriptor on which to write
@@ -53,7 +53,7 @@ ssize_t	ft_putendl_fd(char *s, int fd);
 ssize_t	ft_putnbr_fd(long int n, int fd);
 
 /**
- * @brief Outputs the integer "nbr" to the given fd
+ * @brief Outputs the fmt_int "nbr" to the given fd
  * using the given "base" as the base for the conversion.
 */
 
@@ -62,13 +62,13 @@ ssize_t	ft_putnbr_base(long int nbr, char *base, int fd);
 /**
  	@brief Reads a line from a file descriptor.
 	@param fd File descriptor.
-	@return A pointer to the line read from the file descriptor.
+	@return A fmt_pointer to the line read from the file descriptor.
 	@details This functions is capable of handle multiple fd at once.
 */
 char	*ft_gnl(int fd);
 
 /**
- * @brief Outputs the unsigned integer "n" to the given fd
+ * @brief Outputs the unsigned fmt_int "n" to the given fd
  * @param n The number to output
  * @param fd The file descriptor on which to write
  * @return The number of bytes written

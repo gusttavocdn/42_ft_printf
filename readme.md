@@ -36,7 +36,7 @@ Exemplo:
 Os caracteres especiais definem o que será impresso no stdout. Eles são os seguintes:
 
 - **%c** -> Imprime um caractere
-- **%s** -> Imprime uma string
+- **%s** -> Imprime uma fmt_str
 - **%d** -> Imprime um inteiro
 - **%u** -> Imprime um inteiro sem sinal
 - **%x** -> Imprime um inteiro em formato hexadecimal

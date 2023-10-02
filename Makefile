@@ -18,17 +18,17 @@ MAKE_LIBFT = @make -C libft --no-print-directory
 #                           MANDATORY SRCS   CONFIG                            #
 ################################################################################
 
-MANDATORY_DIR	:= 	mandatory/
-MANDATORY_SRC_DIR := $(MANDATORY_DIR)src/
+MANDATORY_SRC_DIR := ./mandatory/src
 
-MANDATORY := $(addprefix $(MANDATORY_SRC_DIR), apply_flags_and_specifiers.c ft_printf.c is_flag.c \
-												is_specifier.c handle_flags_and_specifiers.c)
+MANDATORY := $(addprefix $(MANDATORY_SRC_DIR)/, apply_flags_and_specifiers.c ft_printf.c handle_flags_and_specifiers.c)
 
-MANDATORY += $(addprefix $(MANDATORY_SRC_DIR)flags/, hash.c minus.c plus.c space.c \
-													width.c zero.c)
+MANDATORY += $(addprefix $(MANDATORY_SRC_DIR)/flags/, hash.c minus.c plus.c space.c \
+													width.c zero.c is_flag.c)
+MANDATORY += $(addprefix $(MANDATORY_SRC_DIR)/specifiers/, char.c hex.c int.c octal.c percent.c pointer.c \
+															string.c unsigned_int.c is_specifier.c fmt_specifiers.c)
 
 MANDATORY_OBJS	:= ${MANDATORY:$(MANDATORY_SRC_DIR)%.c=$(MANDATORY_SRC_DIR)%.o}
-MANDATORY_INCLUDES := $(MANDATORY_DIR)includes/
+MANDATORY_INCLUDES := ./mandatory/includes
 
 ################################################################################
 #                          DEBUG PROGRAM'S SRCS                                #
@@ -80,9 +80,9 @@ fclean:		clean
 
 re:			fclean all
 
-run: 		all
+compile: 		all
 			@echo "$(GREEN)Running...\n$(CLR_RMV)"
-			@${CC} ${CFLAGS} -o ft_printf ${MAIN} $(MANDATORY_DIR)src/*.c $(MANDATORY_DIR)src/flags/*.c  libft/src/*/*.c
+			@${CC} ${CFLAGS} -o ft_printf ${MAIN} $(MANDATORY_DIR)/*.c $(MANDATORY_DIR)/flags/*.c $(MANDATORY_DIR)/specifiers/*.c libft/src/*/*.c
 			@#./${PROGRAM}
 
-.PHONY:		all clean fclean re run
+.PHONY:		all clean fclean re compile bonus

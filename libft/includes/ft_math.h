@@ -23,25 +23,25 @@
 // Function declarations
 
 /**
- * @brief This function converts a string in a number that
+ * @brief This function converts a fmt_str in a number that
  * can be stored in a int variable.
  */
 int		ft_atoi(const char *s);
 
 /**
- * @brief This functions returns a string representing the integer received
+ * @brief This functions returns a fmt_str representing the fmt_int received
  * as argument. Negative numbers are handled.
  *
- * @param n The integer to convert
- * @return The string representing the integer. NULL if malloc fails.
+ * @param n The fmt_int to convert
+ * @return The fmt_str representing the fmt_int. NULL if malloc fails.
  */
 char	*ft_itoa(int n);
 
 /**
- * @brief This function converts a string in a number that
+ * @brief This function converts a fmt_str in a number that
  * can be stored in a int variable.
- * @param str The string to be converted.
- * @param base The base where the string representing a number
+ * @param str The fmt_str to be converted.
+ * @param base The base where the fmt_str representing a number
  * is written.
  * @return The number converted. If the base is invalid,
  * the function returns 0.
@@ -49,11 +49,11 @@ char	*ft_itoa(int n);
 int		ft_atoi_base(char *str, char *base);
 
 /**
- * @brief This function converts a number in a string
+ * @brief This function converts a number in a fmt_str
  * that represents the number in the given base.
  * @param number The number to be converted.
  * @param base  the base
- * @return A pointer allocated with malloc to a string
+ * @return A fmt_pointer allocated with malloc to a fmt_str
  * address representing the number in the given base.
 */
 char	*ft_itoa_base(long int number, char *base);
@@ -67,11 +67,11 @@ char	*ft_itoa_base(long int number, char *base);
 int		ft_calc_nbr_digits(long int number, int base_len);
 
 /**
- * @brief This function converts a string in a base to another base.
- * @param nbr The string to be converted.
+ * @brief This function converts a fmt_str in a base to another base.
+ * @param nbr The fmt_str to be converted.
  * @param base_from The initial base.
  * @param base_to The base to be converted.
- * @return A pointer allocated with malloc to a string
+ * @return A fmt_pointer allocated with malloc to a fmt_str
  * address represeting the number in the given base.
 */
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
@@ -84,18 +84,18 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
 int		ft_abs(int number);
 
 /**
- * @brief This function converts a number in a string
+ * @brief This function converts a number in a fmt_str
  * @param number The number to be converted.
  * @param base the base
- * @return A pointer allocated with malloc to a string
+ * @return A fmt_pointer allocated with malloc to a fmt_str
  */
 char	*ft_itoa_base_u(unsigned int number, char *base);
 
 /**
- * @brief This function converts a number in a string
+ * @brief This function converts a number in a fmt_str
  * @param number The number to be converted.
  * @param base the base
- * @return A pointer allocated with malloc to a string
+ * @return A fmt_pointer allocated with malloc to a fmt_str
  */
 char	*ft_itoa_base_ul(unsigned long number, char *base);
 

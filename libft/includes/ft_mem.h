@@ -31,7 +31,7 @@ void	ft_bzero(void *s, size_t n);
  * with 0.
  * @param nmemb The quantity of elements to allocate
  * @param size The size of each individual element
- * @return Returns a pointer to the allocated memory.
+ * @return Returns a fmt_pointer to the allocated memory.
  * If fails, returns NULL.
  */
 void	*ft_calloc(size_t nmemb, size_t size);
@@ -50,7 +50,7 @@ void	*ft_memset(void *s, int c, size_t n);
  * @param dest dest area to receive the copy
  * @param src source area to copy
  * @param n n bytes that will be copied to dest
- * @return returns a void pointer to dest.
+ * @return returns a void fmt_pointer to dest.
  */
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 
@@ -61,7 +61,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
  * @param dest Memory area dest for the copied bytes.
  * @param src Memory area to copy from.
  * @param n N bytes to copy.
- * @return Returns a void pointer to dest
+ * @return Returns a void fmt_pointer to dest
  */
 void	*ft_memmove(void *dest, const void *src, size_t n);
 
@@ -71,7 +71,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n);
  * @param str Memory area to looking from
  * @param c Byte to looking for
  * @param n Until bytes we will scan
- * @return Returns a void pointer to the first instance of c or NULL if
+ * @return Returns a void fmt_pointer to the first instance of c or NULL if
  * doesn't found.
  */
 void	*ft_memchr(const void *str, int c, size_t n);
