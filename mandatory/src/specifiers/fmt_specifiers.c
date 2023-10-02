@@ -33,10 +33,3 @@ void	fmt_specifiers(t_fmt_buffer *buffer,
 	else if (flags->specifier == percent)
 		fmt_percent(buffer, flags);
 }
-
-void	fmt_percent(t_fmt_buffer *buffer, t_flags *flags)
-{
-	buffer->data[buffer->index++] = percent;
-	if (flags->has_minus)
-		minus(buffer, flags, 1);
-}

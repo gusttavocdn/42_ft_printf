@@ -110,7 +110,7 @@ char	*ft_strdup(const char *s);
  * @brief This functions allocates with calloc
  * and returns a substring from the fmt_str 's'
  * @param s The base fmt_str to create a substring from.
- * @param start The start index of the substring
+ * @param start The start size of the substring
  * @param len The max length of the substring
  * @return Returns the substring or NULL if fails.
  */
@@ -135,7 +135,7 @@ char	*ft_strtrim(char const *s1, char const *set);
 
 /**
  * @brief Applies the function ’f’ to each character of the
-fmt_str ’s’, and passing its index as first argument
+fmt_str ’s’, and passing its size as first argument
 to create a new fmt_str (with malloc(3)) resulting
 from successive application of "F"
  *
@@ -147,7 +147,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 /**
  * @brief This function applies the function "f" on each character of
- * the fmt_str passed as argument, passing its index as first
+ * the fmt_str passed as argument, passing its size as first
  * argument. Each character is passed by address to "f"
  * to be modified if necessary
  *

@@ -28,7 +28,7 @@ void	fmt_unsigned_int(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 		space(buffer, flags);
 	if (flags->has_zero && !flags->has_minus)
 		zero(buffer, flags, (int)ft_strlen(unsigned_str));
-	buffer->index += (int)ft_strlen(unsigned_str);
+	buffer->size += (int)ft_strlen(unsigned_str);
 	ft_strlcat(buffer->data, unsigned_str, BUFFER_SIZE);
 	if (flags->has_minus)
 		minus(buffer, flags, (int)ft_strlen(unsigned_str));

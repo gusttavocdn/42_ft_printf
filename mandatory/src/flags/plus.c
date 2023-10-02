@@ -14,5 +14,5 @@
 
 void	plus(t_fmt_buffer *buffer)
 {
-	buffer->data[buffer->index++] = '+';
+	buffer->data[buffer->size++] = '+';
 }

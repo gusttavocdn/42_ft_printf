@@ -14,7 +14,7 @@
 
 void	hash(t_fmt_buffer *buffer, t_flags *flags)
 {
-	buffer->data[buffer->index++] = '0';
+	buffer->data[buffer->size++] = '0';
 	if (flags->specifier == x || flags->specifier == X)
-		buffer->data[buffer->index++] = flags->specifier;
+		buffer->data[buffer->size++] = flags->specifier;
 }

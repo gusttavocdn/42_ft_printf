@@ -20,14 +20,14 @@ void	fmt_pointer(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	pointer = va_arg(args, size_t);
 	if (!pointer)
 	{
-		buffer->index += 5;
+		buffer->size += 5;
 		ft_strlcat(buffer->data, "(nil)", BUFFER_SIZE);
 		return ;
 	}
 	pointer_str = ft_itoa_base_ul(pointer, HEX_LOWER);
-	buffer->data[buffer->index++] = '0';
-	buffer->data[buffer->index++] = 'x';
-	buffer->index += (int)ft_strlen(pointer_str);
+	buffer->data[buffer->size++] = '0';
+	buffer->data[buffer->size++] = 'x';
+	buffer->size += (int)ft_strlen(pointer_str);
 	ft_strlcat(buffer->data, pointer_str, BUFFER_SIZE);
 	if (flags->has_minus)
 		minus(buffer, flags, ft_strlen(pointer_str));

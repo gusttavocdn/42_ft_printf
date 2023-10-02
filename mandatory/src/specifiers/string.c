@@ -33,9 +33,9 @@ void	fmt_str(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 			width(buffer, flags->width - len, ' ');
 	}
 	if (flags->precision != -1 && flags->precision < len)
-		buffer->index += flags->precision;
+		buffer->size += flags->precision;
 	else
-		buffer->index += len;
+		buffer->size += len;
 	ft_strncat(buffer->data, string, (flags->precision));
 	if (flags->has_minus)
 		minus_string(buffer, flags, len);

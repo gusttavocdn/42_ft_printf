@@ -20,10 +20,9 @@ int	main(void)
 
 	int og, ft;
 	// null_str = NULL;
-	og = printf("%--4.1s %s %------------------9.3s of %s of %-5.7s", "for", "the", "goooood", "aaall", "us");
+	og = printf("the char is: %c", '\0');
 	printf("\n");
-	ft = ft_printf("%--4.1s %s %------------------9.3s of %s of %-5.7s",
-				   "for", "the", "goooood", "aaall", "us");
+	ft = ft_printf("the char is: %c", '\0');
 	printf("\n\nog: %d\nft: %d\n", og, ft);
 	return (0);
 }

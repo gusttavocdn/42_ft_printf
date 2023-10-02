@@ -23,7 +23,7 @@ MANDATORY_SRC_DIR := ./mandatory/src
 MANDATORY := $(addprefix $(MANDATORY_SRC_DIR)/, apply_flags_and_specifiers.c ft_printf.c handle_flags_and_specifiers.c)
 
 MANDATORY += $(addprefix $(MANDATORY_SRC_DIR)/flags/, hash.c minus.c plus.c space.c \
-													width.c zero.c is_flag.c)
+													width.c zero.c )
 MANDATORY += $(addprefix $(MANDATORY_SRC_DIR)/specifiers/, char.c hex.c int.c octal.c percent.c pointer.c \
 															string.c unsigned_int.c is_specifier.c fmt_specifiers.c)
 
@@ -82,7 +82,7 @@ re:			fclean all
 
 compile: 		all
 			@echo "$(GREEN)Running...\n$(CLR_RMV)"
-			@${CC} ${CFLAGS} -o ft_printf ${MAIN} $(MANDATORY_DIR)/*.c $(MANDATORY_DIR)/flags/*.c $(MANDATORY_DIR)/specifiers/*.c libft/src/*/*.c
+			@${CC} ${CFLAGS} -o ft_printf ${MAIN} $(MANDATORY_SRC_DIR)/*.c $(MANDATORY_SRC_DIR)/flags/*.c $(MANDATORY_SRC_DIR)/specifiers/*.c libft/src/*/*.c
 			@#./${PROGRAM}
 
 .PHONY:		all clean fclean re compile bonus

@@ -20,7 +20,7 @@ void	minus(t_fmt_buffer *buffer, t_flags *flags, int len)
 	if (flags->precision < 0)
 	{
 		while (width-- > 0)
-			buffer->data[buffer->index++] = ' ';
+			buffer->data[buffer->size++] = ' ';
 	}
 }
 
@@ -30,5 +30,5 @@ void	minus_string(t_fmt_buffer *buffer, t_flags *flags, int len)
 
 	width = flags->width - len;
 	while (width-- > 0)
-		buffer->data[buffer->index++] = ' ';
+		buffer->data[buffer->size++] = ' ';
 }

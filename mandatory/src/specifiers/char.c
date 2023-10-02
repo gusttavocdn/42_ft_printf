@@ -19,8 +19,8 @@ void	fmt_char(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	c = va_arg(args, int);
 	if (!flags->has_minus)
 		width(buffer, flags->width - 1, ' ');
-	buffer->data[buffer->index] = c;
-	buffer->index++;
+	buffer->data[buffer->size] = c;
+	buffer->size++;
 	if (flags->has_minus)
 		minus(buffer, flags, 1);
 }

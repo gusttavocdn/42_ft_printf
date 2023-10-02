@@ -26,6 +26,6 @@ void	space(t_fmt_buffer *buffer, t_flags *flags)
 			return ;
 		if (flags->width > 0)
 			return ;
-		buffer->data[buffer->index++] = ' ';
+		buffer->data[buffer->size++] = ' ';
 	}
 }

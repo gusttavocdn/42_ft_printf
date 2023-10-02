@@ -6,7 +6,7 @@
 /*   By: gusda-si <gusda-si@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:29 by gusda-si          #+#    #+#             */
-/*   Updated: 2023/10/01 22:36:51 by gusda-si         ###   ########.fr       */
+/*   Updated: 2023/10/01 23:13:29 by gusda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ static int	print_format(const char *str, va_list args)
 	int				bytes_printed;
 
 	buffer.data = ft_calloc(BUFFER_SIZE + NULL_BYTE, sizeof(char));
-	buffer.index = 0;
-	buffer.position = 0;
+	buffer.size = 0;
 	bytes_printed = 0;
 	while (*str != '\0')
 	{
@@ -43,10 +42,10 @@ static int	print_format(const char *str, va_list args)
 			str += handle_flags_and_specifiers(&buffer, str, args);
 		}
 		else
-			buffer.data[buffer.index++] = *str++;
-		if (*str == '\n' || buffer.index == BUFFER_SIZE)
+			buffer.data[buffer.size++] = *str++;
+		if (*str == '\n' || buffer.size == BUFFER_SIZE)
 		{
-			buffer.data[buffer.index++] = *str++;
+			buffer.data[buffer.size++] = *str++;
 			bytes_printed += print_buffer(&buffer);
 		}
 	}
@@ -65,11 +64,13 @@ static int	print_buffer(t_fmt_buffer *buffer)
 	while (buffer->data[bytes_printed] == '\0' && buffer->data[bytes_printed
 			+ 1])
 	{
-		bytes_printed += write(STDOUT_FILENO, "\0", 1);
+		bytes_printed += (int)write(STDOUT_FILENO, "\0", 1);
 		bytes_printed += (int)ft_putstr_fd(&buffer->data[bytes_printed],
 				STDOUT_FILENO);
 	}
-	ft_bzero(buffer->data, buffer->index);
-	buffer->index = 0;
+	if (buffer->size == (bytes_printed + 1))
+		bytes_printed += write(STDOUT_FILENO, "\0", 1);
+	ft_bzero(buffer->data, buffer->size);
+	buffer->size = 0;
 	return (bytes_printed);
 }

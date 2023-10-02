@@ -53,15 +53,13 @@ typedef struct s_flags
 typedef struct s_fmt_buffer
 {
 	char			*data;
-	int				index;
-	int				position;
+	int				size;
 }					t_fmt_buffer;
 
 int					ft_printf(const char *str, ...);
 int					handle_flags_and_specifiers(t_fmt_buffer *buffer,
 						const char *str, va_list args);
 t_bool				is_specifier(char specifier);
-t_bool				is_flag(char flag);
 void				fmt_specifiers(t_fmt_buffer *buffer, t_flags *flags,
 						va_list args);
 void				fmt_hex(t_fmt_buffer *buffer, t_flags *flags, va_list args);

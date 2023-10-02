@@ -21,7 +21,7 @@ void	fmt_octal(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 	octal_str = ft_itoa_base_u(number, OCTAL);
 	if (flags->has_hash)
 		hash(buffer, flags);
-	buffer->index += (int)ft_strlen(octal_str);
+	buffer->size += (int)ft_strlen(octal_str);
 	ft_strlcat(buffer->data, octal_str, BUFFER_SIZE);
 	if (flags->has_minus)
 		minus(buffer, flags, (int)ft_strlen(octal_str));

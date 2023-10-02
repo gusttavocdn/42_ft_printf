@@ -11,8 +11,9 @@
                 "${workspaceFolder}/libft/src/*/*.c",
                 "${workspaceFolder}/mandatory/src/*.c",
                 "${workspaceFolder}/mandatory/src/flags/*.c",
+                "${workspaceFolder}/mandatory/src/specifiers/*.c",
                 "-o",
-                "${workspaceFolder}/main"
+                "${workspaceFolder}/ft_printf"
             ],
             "options": {
                 "cwd": "${fileDirname}"

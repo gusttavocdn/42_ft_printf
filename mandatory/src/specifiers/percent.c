@@ -14,7 +14,7 @@
 
 void	fmt_percent(t_fmt_buffer *buffer, t_flags *flags)
 {
-	buffer->data[buffer->index++] = percent;
+	buffer->data[buffer->size++] = percent;
 	if (flags->has_minus)
 		minus(buffer, flags, 1);
 }

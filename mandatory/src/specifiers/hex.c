@@ -24,7 +24,7 @@ void	fmt_hex(t_fmt_buffer *buffer, t_flags *flags, va_list args)
 		hex_str = ft_itoa_base_u(number, HEX_UPPER);
 	if (flags->has_hash)
 		hash(buffer, flags);
-	buffer->index += (int)ft_strlen(hex_str);
+	buffer->size += (int)ft_strlen(hex_str);
 	ft_strlcat(buffer->data, hex_str, BUFFER_SIZE);
 	if (flags->has_minus)
 		minus(buffer, flags, (int)ft_strlen(hex_str));

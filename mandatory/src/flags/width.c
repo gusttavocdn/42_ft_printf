@@ -15,5 +15,5 @@
 void	width(t_fmt_buffer *buffer, int len, char pad_char)
 {
 	while (len-- > 0)
-		buffer->data[buffer->index++] = pad_char;
+		buffer->data[buffer->size++] = pad_char;
 }

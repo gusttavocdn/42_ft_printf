@@ -20,6 +20,6 @@ void	zero(t_fmt_buffer *buffer, t_flags *flags, int number_len)
 	if (flags->precision < 0)
 	{
 		while (width-- > 0)
-			buffer->data[buffer->index++] = '0';
+			buffer->data[buffer->size++] = '0';
 	}
 }
